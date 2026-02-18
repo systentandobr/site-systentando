@@ -1,0 +1,37 @@
+# global options
+{
+    admin off # não há necessidade da API admin no ambiente do railway
+    persist_config off # o armazenamento não é persistente de qualquer forma
+    auto_https off # o railway gerencia https para nós, isso causaria problemas se deixado habilitado
+    # logs de runtime
+    log {
+        format json # definir formato de log de runtime para modo json
+    }
+    # opções do servidor
+    servers {
+        trusted_proxies static private_ranges 100.0.0.0/8 # confiar no proxy do railway
+    }
+}
+
+# bloco do site, escuta na variável de ambiente $PORT, automaticamente atribuída pelo railway
+:{$PORT:3000} {
+    # logs de acesso
+    log {
+        format json # definir formato de log de acesso para modo json
+    }
+    # health check para railway
+    rewrite /health /*
+    # servir da pasta 'dist' (Vite compila para a pasta 'dist')
+    root * dist
+    # habilitar compressão gzip das respostas
+    encode gzip
+    # servir arquivos da pasta 'dist'
+    file_server
+    # se o caminho não existir, redirecionar para 'index.html' para roteamento do lado do cliente
+    try_files {path} /index.html
+}
+
+
+
+
+
