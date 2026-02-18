@@ -26,7 +26,6 @@ export const ArchitectureSection = () => {
         <section id="architecture" className="py-20 bg-[#0d0d10] border-y border-white/5 relative z-10 overflow-hidden" style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: 'cover',
-            backgroundTransparent: 90,
             backgroundPosition: 'center'
         }}>
             {/* Background Texture Overlay - Restored to div for proper blending */}
