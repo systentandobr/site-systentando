@@ -68,7 +68,7 @@ export const ProjectsSection = () => {
                         ]}
                         techs={["Next.js", "RAG / LangChain", "Stripe", "Docker"]}
                         links={[
-                            { label: "Site", url: "https://viralkids.com.br/" },
+                            { label: "Site", url: "https://site.viralkids.com.br/" },
                             { label: "Repositório", url: "https://github.com/systentandobr/viralkids" }
                         ]}
                         color="purple"

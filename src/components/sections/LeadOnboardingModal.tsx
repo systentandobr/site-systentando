@@ -482,7 +482,7 @@ export const LeadOnboardingModal: React.FC<LeadOnboardingModalProps> = ({ isOpen
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-300 mb-1">
-                                            Como conheceu o TaDeVolta? *
+                                            Como conheceu o SystentandoBR? *
                                         </label>
                                         <select
                                             required
