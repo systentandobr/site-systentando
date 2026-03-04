@@ -4,14 +4,14 @@ export const WorkflowGraph = ({ nodes, connections }: WorkflowGraphProps) => {
     return (
         <div className="relative w-full aspect-[16/9] md:aspect-video max-w-5xl mx-auto bg-[#0a0a0c]/50 border border-white/5 rounded-3xl overflow-hidden backdrop-blur-sm min-h-[400px] md:min-h-0">
             {/* Grid Background */}
-            <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#34d399 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
+            <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#d5ff40 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}></div>
 
             {/* Connection Lines (SVG) - Visible only on Desktop */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <defs>
                     <linearGradient id="flow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#10b981" stopOpacity="0" />
-                        <stop offset="50%" stopColor="#10b981" stopOpacity="0.5" />
+                        <stop offset="0%" stopColor="#d5ff40" stopOpacity="0" />
+                        <stop offset="50%" stopColor="#d5ff40" stopOpacity="0.5" />
                         <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
                     </linearGradient>
                 </defs>
@@ -65,11 +65,11 @@ export const WorkflowGraph = ({ nodes, connections }: WorkflowGraphProps) => {
                             <div className="relative w-full max-w-[280px] md:max-w-none">
                                 {/* Pulse effect for active nodes */}
                                 {node.status === 'active' && (
-                                    <div className="absolute inset-0 bg-emerald-500/20 rounded-xl blur-xl animate-pulse"></div>
+                                    <div className="absolute inset-0 bg-accent/20 rounded-xl blur-xl animate-pulse"></div>
                                 )}
 
-                                <div className="relative bg-[#15151a] border border-white/10 rounded-xl p-3 flex items-center gap-3 shadow-2xl transition-all duration-300 group-hover:border-emerald-500/30 group-hover:scale-105">
-                                    <div className={`p-2 rounded-lg bg-[#0a0a0c] ${node.status === 'active' ? 'text-emerald-400' : 'text-slate-500'}`}>
+                                <div className="relative bg-[#15151a] border border-white/10 rounded-xl p-3 flex items-center gap-3 shadow-2xl transition-all duration-300 group-hover:border-accent/30 group-hover:scale-105">
+                                    <div className={`p-2 rounded-lg bg-[#0a0a0c] ${node.status === 'active' ? 'text-accent' : 'text-slate-500'}`}>
                                         <Icon size={18} />
                                     </div>
                                     <div className="min-w-[100px] flex-1">

@@ -3,7 +3,7 @@ import { ProjectCardProps, EcosystemColor, ProjectLink } from '../../types';
 
 export const ProjectCard = ({ title, category, icon, description, features, techs, links, color }: ProjectCardProps) => {
     const colors: Record<EcosystemColor, string> = {
-        emerald: "hover:border-emerald-500/50 group-hover:shadow-emerald-900/20",
+        emerald: "hover:border-accent/50 group-hover:shadow-accent/20",
         blue: "hover:border-blue-500/50 group-hover:shadow-blue-900/20",
         purple: "hover:border-purple-500/50 group-hover:shadow-purple-900/20",
         orange: "hover:border-orange-500/50 group-hover:shadow-orange-900/20",
@@ -17,7 +17,7 @@ export const ProjectCard = ({ title, category, icon, description, features, tech
                         {icon}
                     </div>
                     <div>
-                        <h3 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">{title}</h3>
+                        <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors">{title}</h3>
                         <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{category}</span>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ export const ProjectCard = ({ title, category, icon, description, features, tech
                 <ul className="space-y-2">
                     {features.map((feat: string, i: number) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-slate-400">
-                            <ChevronRight size={14} className="mt-1 text-emerald-500 flex-shrink-0" />
+                            <ChevronRight size={14} className="mt-1 text-accent flex-shrink-0" />
                             {feat}
                         </li>
                     ))}
@@ -60,7 +60,7 @@ export const ProjectCard = ({ title, category, icon, description, features, tech
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs font-bold text-emerald-500 hover:text-emerald-400 flex items-center gap-1"
+                            className="text-xs font-bold text-accent hover:text-accent/80 flex items-center gap-1"
                         >
                             {link.label}
                             <ArrowRight size={12} />

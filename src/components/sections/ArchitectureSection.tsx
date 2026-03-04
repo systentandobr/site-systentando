@@ -23,7 +23,7 @@ export const ArchitectureSection = () => {
     ];
 
     return (
-        <section id="architecture" className="py-20 bg-[#0d0d10] border-y border-white/5 relative z-10 overflow-hidden" style={{
+        <section id="architecture" className="py-20 dark:bg-[#0d0d10] bg-[#0d0d10] dark:border-y dark:border-white/5 border-y border-white/5 relative z-10 overflow-hidden" style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
@@ -34,52 +34,52 @@ export const ArchitectureSection = () => {
 
             <div className="container mx-auto px-6 relative z-10" >
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold text-white mb-4">Architetura & Fluxo de integração</h2>
-                    <p className="text-slate-400 max-w-2xl mx-auto">
+                    <h2 className="text-3xl font-bold dark:text-white text-white mb-4">Architetura & Fluxo de integração</h2>
+                    <p className="dark:text-slate-400 text-slate-400 max-w-2xl mx-auto">
                         Inspirado no padrão de roteamento unificado, nosso ecossistema utiliza um pipeline de segurança e IA que permite escalabilidade horizontal e multi-tenancy real.
                     </p>
                 </div>
 
                 {/* Workflow Graph View (New Technical View) */}
                 <div className="mb-24">
-                    <div className="flex items-center gap-2 mb-6 text-emerald-400 font-mono text-sm uppercase tracking-widest">
+                    <div className="flex items-center gap-2 mb-6 text-accent font-mono text-sm uppercase tracking-widest">
                         <Zap size={16} /> Technical Graph View
                     </div>
                     <WorkflowGraph nodes={graphNodes} connections={graphConnections} />
                     <div className="grid md:grid-cols-3 gap-6 mt-12">
-                        <div className="p-6 bg-[#15151a]/50 backdrop-blur-md rounded-2xl border border-white/10 hover:border-emerald-500/30 transition-all duration-300">
-                            <h4 className="flex items-center gap-2 text-white font-bold mb-3">
-                                <Shield className="text-blue-400" size={18} />
+                        <div className="p-6 dark:bg-[#15151a]/50 bg-[#15151a]/50 backdrop-blur-md rounded-2xl dark:border dark:border-white/10 border border-white/10 dark:hover:border-accent/30 hover:border-accent/30 transition-all duration-300">
+                            <h4 className="flex items-center gap-2 dark:text-white text-white font-bold mb-3">
+                                <Shield className="dark:text-blue-400 text-blue-400" size={18} />
                                 Segurança Unificada
                             </h4>
-                            <p className="text-xs text-slate-400 leading-relaxed">
+                            <p className="text-xs dark:text-slate-400 text-slate-400 leading-relaxed">
                                 Baseado em NestJS, o Gateway gerencia JWT, Rate Limiting e filtros de exceção globais, protegendo toda a malha de APIs.
                             </p>
                         </div>
-                        <div className="p-6 bg-[#15151a]/50 backdrop-blur-md rounded-2xl border border-white/10 hover:border-emerald-500/30 transition-all duration-300">
-                            <h4 className="flex items-center gap-2 text-white font-bold mb-3">
-                                <Bot className="text-emerald-400" size={18} />
+                        <div className="p-6 dark:bg-[#15151a]/50 bg-[#15151a]/50 backdrop-blur-md rounded-2xl dark:border dark:border-white/10 border border-white/10 dark:hover:border-accent/30 hover:border-accent/30 transition-all duration-300">
+                            <h4 className="flex items-center gap-2 dark:text-white text-white font-bold mb-3">
+                                <Bot className="dark:text-accent text-accent" size={18} />
                                 Orquestração de Agentes
                             </h4>
-                            <p className="text-xs text-slate-400 leading-relaxed">
+                            <p className="text-xs dark:text-slate-400 text-slate-400 leading-relaxed">
                                 Utilizando Agno Framework em Python, gerenciamos conhecimento dinâmico (RAG) e memória persistente por sessão de usuário.
                             </p>
                         </div>
-                        <div className="p-6 bg-[#15151a]/50 backdrop-blur-md rounded-2xl border border-white/10 hover:border-emerald-500/30 transition-all duration-300">
-                            <h4 className="flex items-center gap-2 text-white font-bold mb-3">
-                                <Server className="text-purple-400" size={18} />
+                        <div className="p-6 dark:bg-[#15151a]/50 bg-[#15151a]/50 backdrop-blur-md rounded-2xl dark:border dark:border-white/10 border border-white/10 dark:hover:border-accent/30 hover:border-accent/30 transition-all duration-300">
+                            <h4 className="flex items-center gap-2 dark:text-white text-white font-bold mb-3">
+                                <Server className="dark:text-purple-400 text-purple-400" size={18} />
                                 Multi-Sessão Escalável
                             </h4>
-                            <p className="text-xs text-slate-400 leading-relaxed">
+                            <p className="text-xs dark:text-slate-400 text-slate-400 leading-relaxed">
                                 Nossa infraestrutura de banco (Postgres/Redis) permite que instâncias replicadas atendam múltiplos modelos de negócio simultaneamente.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div className="bg-gray-900/30 mt-10 p-10 rounded-2xl backdrop-blur-sm border border-white/5"> {/* Fixed: bg-gray-900/30 instead of global opacity */}
-                    <div className="text-center mb-16 border-t border-white/5 pt-16">
-                        <h3 className="text-2xl font-bold text-white mb-4 italic text-slate-500">Acelere seu fluxo de Negócios</h3>
+                <div className="dark:bg-gray-900/30 bg-gray-900/30 mt-10 p-10 rounded-2xl backdrop-blur-sm dark:border dark:border-white/5 border border-white/5"> {/* Fixed: bg-gray-900/30 instead of global opacity */}
+                    <div className="text-center mb-16 dark:border-t dark:border-white/5 border-t border-white/5 pt-16">
+                        <h3 className="text-2xl font-bold dark:text-white text-white mb-4 italic dark:text-slate-500 text-slate-500">Acelere seu fluxo de Negócios</h3>
                     </div>
 
                     <div className="relative max-w-5xl mx-auto">
@@ -90,8 +90,8 @@ export const ArchitectureSection = () => {
                             <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-30" style={{ overflow: 'visible' }}>
                                 <defs>
                                     <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stopColor="#34d399" stopOpacity="0.1" />
-                                        <stop offset="50%" stopColor="#34d399" stopOpacity="0.8" />
+                                        <stop offset="0%" stopColor="#d5ff40" stopOpacity="0.1" />
+                                        <stop offset="50%" stopColor="#d5ff40" stopOpacity="0.8" />
                                         <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.1" />
                                     </linearGradient>
                                 </defs>
@@ -103,30 +103,30 @@ export const ArchitectureSection = () => {
 
                             {/* Column 1: Core Infra */}
                             <div className="space-y-6 relative z-10">
-                                <div className="bg-[#15151a] border border-emerald-500/30 p-6 rounded-xl shadow-xl shadow-emerald-900/10">
-                                    <div className="w-12 h-12 bg-emerald-900/30 rounded-lg flex items-center justify-center mb-4 text-emerald-400">
+                                <div className="dark:bg-[#15151a] bg-[#15151a] dark:border dark:border-accent/30 border border-accent/30 p-6 rounded-xl dark:shadow-xl dark:shadow-accent/10 shadow-xl shadow-accent/10">
+                                    <div className="w-12 h-12 dark:bg-accent/30 bg-accent/30 rounded-lg flex items-center justify-center mb-4 dark:text-accent text-accent">
                                         <Database size={24} />
                                     </div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Backend Monorepo (Py)</h3>
-                                    <p className="text-sm text-slate-400">Infraestrutura unificada, auth centralizado e microsserviços compartilhados.</p>
+                                    <h3 className="text-xl font-bold dark:text-white text-white mb-2">Backend Monorepo (Py)</h3>
+                                    <p className="text-sm dark:text-slate-400 text-slate-400">Infraestrutura unificada, auth centralizado e microsserviços compartilhados.</p>
                                 </div>
 
-                                <div className="bg-[#15151a] border border-blue-500/30 p-6 rounded-xl shadow-xl shadow-blue-900/10">
-                                    <div className="w-12 h-12 bg-blue-900/30 rounded-lg flex items-center justify-center mb-4 text-blue-400">
+                                <div className="dark:bg-[#15151a] bg-[#15151a] dark:border dark:border-blue-500/30 border border-blue-500/30 p-6 rounded-xl dark:shadow-xl dark:shadow-blue-900/10 shadow-xl shadow-blue-900/10">
+                                    <div className="w-12 h-12 dark:bg-blue-900/30 bg-blue-900/30 rounded-lg flex items-center justify-center mb-4 dark:text-blue-400 text-blue-400">
                                         <Bot size={24} />
                                     </div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Núcleo de IA & RAG</h3>
-                                    <p className="text-sm text-slate-400">Agentes autônomos contextuais, treinados por segmento (Fitness, Varejo, Jurídico).</p>
+                                    <h3 className="text-xl font-bold dark:text-white text-white mb-2">Núcleo de IA & RAG</h3>
+                                    <p className="text-sm dark:text-slate-400 text-slate-400">Agentes autônomos contextuais, treinados por segmento (Fitness, Varejo, Jurídico).</p>
                                 </div>
                             </div>
 
                             {/* Column 2: The Logic/API Layer */}
                             <div className="flex justify-center relative z-10">
-                                <div className="bg-[#0a0a0c] border border-slate-700 p-8 rounded-full w-48 h-48 flex flex-col items-center justify-center text-center shadow-2xl relative">
-                                    <div className="absolute inset-0 border-2 border-dashed border-emerald-500/20 rounded-full animate-spin-slow"></div>
-                                    <Cpu size={32} className="text-emerald-400 mb-2" />
-                                    <span className="font-bold text-white">API Gateway</span>
-                                    <span className="text-xs text-slate-500 mt-1">Gestão de Dados &<br />Distribuição</span>
+                                <div className="dark:bg-[#0a0a0c] bg-[#0a0a0c] dark:border dark:border-slate-700 border border-slate-700 p-8 rounded-full w-48 h-48 flex flex-col items-center justify-center text-center dark:shadow-2xl shadow-2xl relative">
+                                    <div className="absolute inset-0 dark:border-2 dark:border-dashed dark:border-accent/20 border-2 border-dashed border-accent/20 rounded-full animate-spin-slow"></div>
+                                    <Cpu size={32} className="dark:text-accent text-accent mb-2" />
+                                    <span className="font-bold dark:text-white text-white">API Gateway</span>
+                                    <span className="text-xs dark:text-slate-500 text-slate-500 mt-1">Gestão de Dados &<br />Distribuição</span>
                                 </div>
                             </div>
 
@@ -136,36 +136,36 @@ export const ArchitectureSection = () => {
                                 <AppNode icon={Repeat} title="TaDeVolta" color="blue" desc="Fidelização & CRM" />
                                 <AppNode icon={ShoppingCart} title="ViralKids" color="purple" desc="E-commerce + IA" />
                                 <AppNode icon={Layers} title="Meu Gestor SaaS" color="orange" desc="Multi-tenant ERP" />
-                                <div className="mt-4 p-4 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm animate-pulse">
-                                    <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
+                                <div className="mt-4 p-4 rounded-lg dark:bg-white/5 bg-white/5 dark:border dark:border-white/10 border border-white/10 backdrop-blur-sm animate-pulse">
+                                    <div className="flex items-center gap-2 text-xs font-bold dark:text-accent text-accent">
                                         <Bot size={14} />
                                         Sua Próxima Solução...
                                     </div>
-                                    <p className="text-[10px] text-slate-500 mt-1">N aplicações prontas para serem escaladas.</p>
+                                    <p className="text-[10px] dark:text-slate-500 text-slate-500 mt-1">N aplicações prontas para serem escaladas.</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Mobile View of Pipeline */}
                         <div className="lg:hidden flex flex-col gap-6 relative">
-                            <div className="border-l-2 border-dashed border-emerald-500/30 ml-6 pl-8 space-y-8 pb-4">
+                            <div className="dark:border-l-2 dark:border-dashed dark:border-accent/30 border-l-2 border-dashed border-accent/30 ml-6 pl-8 space-y-8 pb-4">
                                 <div className="relative">
-                                    <div className="absolute -left-[41px] top-0 w-6 h-6 bg-emerald-500 rounded-full border-4 border-[#0d0d10]"></div>
-                                    <h3 className="text-white font-bold">Infraestrutura Core</h3>
-                                    <p className="text-sm text-slate-400 mt-1">Backend Python, RAG e IA</p>
+                                    <div className="absolute -left-[41px] top-0 w-6 h-6 bg-accent rounded-full dark:border-4 dark:border-[#0d0d10] border-4 border-[#0d0d10]"></div>
+                                    <h3 className="dark:text-white text-white font-bold">Infraestrutura Core</h3>
+                                    <p className="text-sm dark:text-slate-400 text-slate-400 mt-1">Backend Python, RAG e IA</p>
                                 </div>
                                 <div className="relative">
-                                    <div className="absolute -left-[41px] top-0 w-6 h-6 bg-blue-500 rounded-full border-4 border-[#0d0d10]"></div>
-                                    <h3 className="text-white font-bold">Processamento</h3>
-                                    <p className="text-sm text-slate-400 mt-1">APIs, Autenticação e Regras de Negócio</p>
+                                    <div className="absolute -left-[41px] top-0 w-6 h-6 dark:bg-blue-500 bg-blue-500 rounded-full dark:border-4 dark:border-[#0d0d10] border-4 border-[#0d0d10]"></div>
+                                    <h3 className="dark:text-white text-white font-bold">Processamento</h3>
+                                    <p className="text-sm dark:text-slate-400 text-slate-400 mt-1">APIs, Autenticação e Regras de Negócio</p>
                                 </div>
                                 <div className="relative">
-                                    <div className="absolute -left-[41px] top-0 w-6 h-6 bg-purple-500 rounded-full border-4 border-[#0d0d10]"></div>
-                                    <h3 className="text-white font-bold">Aplicações Finais</h3>
+                                    <div className="absolute -left-[41px] top-0 w-6 h-6 dark:bg-purple-500 bg-purple-500 rounded-full dark:border-4 dark:border-[#0d0d10] border-4 border-[#0d0d10]"></div>
+                                    <h3 className="dark:text-white text-white font-bold">Aplicações Finais</h3>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                                        <div className="bg-[#15151a] p-3 rounded border border-white/10 text-sm">GymApp</div>
-                                        <div className="bg-[#15151a] p-3 rounded border border-white/10 text-sm">TaDeVolta</div>
-                                        <div className="bg-[#15151a] p-3 rounded border border-white/10 text-sm">ViralKids</div>
+                                        <div className="dark:bg-[#15151a] bg-[#15151a] p-3 rounded dark:border dark:border-white/10 border border-white/10 dark:text-slate-300 text-slate-300 text-sm">GymApp</div>
+                                        <div className="dark:bg-[#15151a] bg-[#15151a] p-3 rounded dark:border dark:border-white/10 border border-white/10 dark:text-slate-300 text-slate-300 text-sm">TaDeVolta</div>
+                                        <div className="dark:bg-[#15151a] bg-[#15151a] p-3 rounded dark:border dark:border-white/10 border border-white/10 dark:text-slate-300 text-slate-300 text-sm">ViralKids</div>
                                     </div>
                                 </div>
                             </div>

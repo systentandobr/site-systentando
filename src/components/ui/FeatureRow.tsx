@@ -2,7 +2,7 @@ import { FeatureRowProps } from '../../types';
 
 export const FeatureRow = ({ icon, title, text }: FeatureRowProps) => (
     <div className="flex gap-4 items-start">
-        <div className="mt-1 text-emerald-400">
+        <div className="mt-1 text-accent">
             {icon}
         </div>
         <div>

@@ -6,8 +6,8 @@ export const ProjectsSection = () => {
         <section id="projects" className="py-24 relative z-10">
             <div className="container mx-auto px-6">
                 <div className="mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Nossas Soluções</h2>
-                    <p className="text-slate-400">Projetos reais, operando e evoluindo com contribuição da comunidade.</p>
+                    <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-white mb-4">Nossas Soluções</h2>
+                    <p className="dark:text-slate-400 text-slate-400">Projetos reais, operando e evoluindo com contribuição da comunidade.</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8">
@@ -15,7 +15,7 @@ export const ProjectsSection = () => {
                     <ProjectCard
                         title="GymApp / LevantaDAI"
                         category="Health & Fitness"
-                        icon={<Activity className="text-emerald-400" />}
+                        icon={<Activity className="text-accent" />}
                         description="Sistema de gestão para academias modernas. Integra profissionais físicos com alunos."
                         features={[
                             "Gestão de Treinos e Fichas",

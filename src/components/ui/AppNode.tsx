@@ -2,7 +2,7 @@ import { AppNodeProps, EcosystemColor } from '../../types';
 
 export const AppNode = ({ icon: Icon, title, desc, color }: AppNodeProps) => {
     const colors: Record<EcosystemColor, string> = {
-        emerald: "border-l-emerald-500 text-emerald-400 bg-emerald-900/10",
+        emerald: "border-l-accent text-accent bg-accent/10",
         blue: "border-l-blue-500 text-blue-400 bg-blue-900/10",
         purple: "border-l-purple-500 text-purple-400 bg-purple-900/10",
         orange: "border-l-orange-500 text-orange-400 bg-orange-900/10",

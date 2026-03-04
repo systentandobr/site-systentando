@@ -65,7 +65,7 @@ export const DeviceShowcase = ({ className }: DeviceShowcaseProps) => {
                 {/* App Badge */}
                 <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <div className="bg-[#15151a]/80 backdrop-blur-xl border border-white/20 px-6 py-3 rounded-2xl text-[11px] font-bold text-white shadow-2xl tracking-tight flex items-center gap-3">
-                        <div className={`w-2 h-2 rounded-full ${apps[currentAppIdx].color === 'emerald' ? 'bg-emerald-500' : 'bg-blue-500'} animate-pulse`}></div>
+                        <div className={`w-2 h-2 rounded-full ${apps[currentAppIdx].color === 'emerald' ? 'bg-accent' : 'bg-blue-500'} animate-pulse`}></div>
                         {apps[currentAppIdx].name}
                     </div>
                 </div>
@@ -73,7 +73,7 @@ export const DeviceShowcase = ({ className }: DeviceShowcaseProps) => {
 
             {/* Secondary Phone Frame (Canted/Offset) */}
             <div className="hidden lg:block relative w-[280px] h-[580px] bg-[#0a0a0c] rounded-[3rem] border-[8px] border-[#1a1a20] shadow-2xl overflow-hidden opacity-40 scale-90 translate-x-12 -rotate-6 blur-[1px]">
-                <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/10 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-accent/10 to-transparent"></div>
                 <iframe
                     src={apps[(currentAppIdx + 1) % apps.length].url}
                     className="w-full h-full border-none pointer-events-none"
@@ -82,7 +82,7 @@ export const DeviceShowcase = ({ className }: DeviceShowcaseProps) => {
             </div>
 
             {/* Background Glow */}
-            <div className={`absolute inset-0 -z-10 blur-[100px] opacity-20 transition-colors duration-1000 ${apps[currentAppIdx].color === 'emerald' ? 'bg-emerald-500' : 'bg-blue-500'}`}></div>
+            <div className={`absolute inset-0 -z-10 blur-[100px] opacity-20 transition-colors duration-1000 ${apps[currentAppIdx].color === 'emerald' ? 'bg-accent' : 'bg-blue-500'}`}></div>
         </div>
     );
 };

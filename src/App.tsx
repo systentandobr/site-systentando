@@ -37,17 +37,22 @@ const App = () => {
     const toggleLeadModal = () => setIsLeadModalOpen(!isLeadModalOpen);
 
     return (
-        <div className="min-h-screen bg-[#0a0a0c] text-slate-300 font-sans selection:bg-emerald-500/30 selection:text-emerald-200 overflow-x-hidden relative">
+        <div className="min-h-screen dark:bg-[#0a0a0c] bg-[#0a0a0c] dark:text-slate-300 text-slate-300 font-sans overflow-x-hidden relative">
+
+            {/* Design System: noise overlay */}
+            <div className="noise-overlay" />
 
             {/* Background Texture & Premium BG */}
-            <div className="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-overlay"
+            <div className="fixed inset-0 z-0 pointer-events-none opacity-15 mix-blend-overlay"
                 style={{
                     backgroundImage: 'url(https://systentando.com/assets/images/background.png)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                 }}>
             </div>
-            <div className="fixed inset-0 z-0 bg-gradient-to-tr from-[#0a0a0c] via-[#0a0a0c]/80 to-emerald-900/10 pointer-events-none"></div>
+            <div className="fixed inset-0 z-0 dark:bg-gradient-to-tr dark:from-[#0a0a0c] dark:via-[#0a0a0c]/80 dark:to-accent/10 bg-gradient-to-tr from-[#0a0a0c] via-[#0a0a0c]/80 to-accent/10 pointer-events-none"></div>
+            {/* Design System: bg-grid overlay */}
+            <div className="fixed inset-0 z-0 pointer-events-none bg-grid opacity-15"></div>
 
             <Navbar
                 isScrolled={isScrolled}

@@ -5,7 +5,7 @@ export const SocialFeedCard = ({ platform, handle, content, image }: SocialFeedC
     <div className="bg-[#15151a]/60 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/10 shadow-2xl hover:scale-[1.02] transition-transform duration-300">
         <div className="p-4 flex items-center justify-between border-b border-white/5">
             <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-blue-500 flex items-center justify-center text-white text-xs font-bold">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-accent to-blue-500 flex items-center justify-center text-white text-xs font-bold">
                     {handle[0].toUpperCase()}
                 </div>
                 <div>

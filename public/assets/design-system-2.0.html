@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Design System 2.0 - SystentandoBR</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="design-system-2.0.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        stone: {
+                            50: '#fafaf9', 100: '#f5f5f4', 200: '#e7e5e4', 300: '#d6d3d1',
+                            400: '#a8a29e', 500: '#78716c', 600: '#57534e', 700: '#44403c',
+                            800: '#292524', 900: '#1c1917',
+                        },
+                        'surface-light': '#EAEAE5',
+                        accent: '#d5ff40',
+                        'accent-dim': 'rgba(213, 255, 64, 0.15)',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'shimmer': 'shimmer 3s linear infinite',
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'gradient-y': 'gradient-y 15s ease infinite',
+                    },
+                    keyframes: {
+                        spin: {
+                            from: { transform: 'rotate(0deg)' },
+                            to: { transform: 'rotate(360deg)' }
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(213, 255, 64, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(213, 255, 64, 0.6)' }
+                        },
+                        'shimmer': {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        },
+                        'gradient-x': {
+                            '0%, 100%': { transform: 'translateX(0%) translateY(0%)' },
+                            '50%': { transform: 'translateX(100%) translateY(100%)' }
+                        },
+                        'gradient-y': {
+                            '0%, 100%': { transform: 'translateX(0%) translateY(0%)' },
+                            '50%': { transform: 'translateX(100%) translateY(100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="antialiased min-h-screen relative selection:bg-accent-dim selection:text-accent">
+
+    <div class="noise-overlay"></div>
+
+    <!-- NAVBAR -->
+    <header class="fixed w-full z-50 top-0 transition-all duration-300 glass-panel" id="navbar">
+        <div class="max-w-[1440px] mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <div class="w-8 h-8 bg-accent/20 text-accent flex items-center justify-center rounded-sm transition-transform group-hover:rotate-90 duration-500">
+                    <iconify-icon icon="solar:infinity-bold" class="text-xl"></iconify-icon>
+                </div>
+                <span class="font-display font-medium tracking-tight text-lg text-white">Systentando<span class="text-accent">.BR</span></span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-slate-400">
+                <a href="#hero" class="hover:text-accent transition-colors">Hero</a>
+                <a href="#typography" class="hover:text-accent transition-colors">Tipografia</a>
+                <a href="#colors" class="hover:text-accent transition-colors">Cores</a>
+                <a href="#components" class="hover:text-accent transition-colors">Componentes</a>
+                <a href="#icons" class="hover:text-accent transition-colors">Ícones</a>
+                <a href="#animations" class="hover:text-accent transition-colors">Animações</a>
+            </nav>
+            <button class="beam-btn group">
+                <div class="beam-spinner"></div>
+                <div class="beam-btn-content flex items-center gap-2">
+                    <span>Download Kit</span>
+                    <iconify-icon icon="solar:download-linear" class="text-lg"></iconify-icon>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <main class="relative z-10 pt-20">
+
+        <!-- 1. HERO SECTION (dark 2.0 - IMPRESSIONANTE) -->
+        <section id="hero" class="min-h-screen relative flex items-center justify-center overflow-hidden border-b border-white/5">
+            <!-- Animated Background Particles -->
+            <div class="particles" id="particles"></div>
+
+            <!-- Background Animation (accent/blue/purple blur) -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div class="absolute top-[20%] left-[20%] w-96 h-96 bg-accent/15 rounded-full blur-3xl animate-float"></div>
+                <div class="absolute top-[30%] right-[20%] w-[30rem] h-[30rem] bg-blue-600/15 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+                <div class="absolute bottom-[20%] left-[10%] w-[25rem] h-[25rem] bg-purple-600/10 rounded-full blur-3xl animate-float-slow" style="animation-delay: -5s;"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/10 rounded-full blur-3xl -z-10 animate-float pointer-events-none" style="animation-delay: -2s;"></div>
+            </div>
+
+            <!-- Grid Pattern Overlay -->
+            <div class="absolute inset-0 bg-grid opacity-30"></div>
+
+            <div class="relative z-10 text-center px-6 max-w-7xl mx-auto">
+                <div class="inline-flex items-center gap-3 mb-6 reveal-up">
+                    <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                    <span class="text-xs font-mono uppercase tracking-[0.2em] text-slate-400">Design System v2.0</span>
+                    <span class="w-12 h-px bg-accent/50"></span>
+                    <span class="w-2 h-2 bg-accent rounded-full animate-pulse" style="animation-delay: 0.5s;"></span>
+                </div>
+
+                <h1 class="font-display text-5xl md:text-7xl lg:text-[7rem] font-bold tracking-tighter leading-[0.9] mb-6 text-white">
+                    <div class="reveal-up delay-100 block">Uma Infraestrutura,</div>
+                    <div class="reveal-up delay-200 block text-outline-glow text-transparent">Infinitas Possibilidades.</div>
+                </h1>
+
+                <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed reveal-up delay-500 font-light">
+                    Sistema de design unificado para o ecossistema SystentandoBR. Componentes de alta fidelidade, interações baseadas em física e tipografia espacial.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4 reveal-up delay-700">
+                    <button class="btn-glow group relative px-8 py-4 rounded-full overflow-hidden shadow-lg shadow-accent/20 hover:shadow-xl transition-all hover:-translate-y-1">
+                        <span class="relative z-10 flex items-center gap-2 text-sm font-medium tracking-wide">
+                            Explorar Sistema
+                            <iconify-icon icon="solar:arrow-right-linear" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                        </span>
+                    </button>
+                    <button class="btn-shimmer group px-8 py-4 text-white rounded-full transition-all hover:-translate-y-1 flex items-center gap-2">
+                        <span class="relative z-10 text-sm font-medium tracking-wide">Ver Componentes</span>
+                        <iconify-icon icon="solar:arrow-down-linear" class="group-hover:translate-y-0.5 transition-transform"></iconify-icon>
+                    </button>
+                    <button class="btn-beam group relative px-8 py-4 rounded-full overflow-hidden">
+                        <span class="btn-beam-content flex items-center gap-2">
+                            <span class="text-sm font-medium tracking-wide">Beam Effect</span>
+                            <iconify-icon icon="solar:magic-stick-linear" class="text-lg"></iconify-icon>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Floating Elements -->
+                <div class="absolute top-[15%] left-[10%] w-16 h-16 bg-accent/10 rounded-lg backdrop-blur-sm border border-accent/20 animate-float reveal-fade delay-1000">
+                    <iconify-icon icon="solar:code-linear" class="text-2xl text-accent m-4"></iconify-icon>
+                </div>
+                <div class="absolute top-[25%] right-[15%] w-16 h-16 bg-blue-500/10 rounded-lg backdrop-blur-sm border border-blue-500/20 animate-float reveal-fade delay-1000" style="animation-delay: -2s;">
+                    <iconify-icon icon="solar:palette-linear" class="text-2xl text-blue-400 m-4"></iconify-icon>
+                </div>
+                <div class="absolute bottom-[20%] left-[20%] w-16 h-16 bg-purple-500/10 rounded-lg backdrop-blur-sm border border-purple-500/20 animate-float reveal-fade delay-1000" style="animation-delay: -4s;">
+                    <iconify-icon icon="solar:rocket-linear" class="text-2xl text-purple-400 m-4"></iconify-icon>
+                </div>
+            </div>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 opacity-60">
+                <span class="text-[10px] font-mono uppercase tracking-widest text-accent/80">Scroll</span>
+                <div class="w-px h-8 bg-slate-600 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-full h-full bg-accent animate-scroll-line"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. TIPOGRAFIA (dark 2.0) -->
+        <section id="typography" class="py-24 md:py-32 border-t border-white/5 bg-grid bg-[#0d0d10] relative overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+            <div class="max-w-[1440px] mx-auto px-6 md:px-24 relative z-10">
+                <div class="mb-16 reveal-up">
+                    <span class="text-xs font-mono uppercase tracking-widest text-slate-500 block mb-4">01 / Tipografia</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white">Escala tipográfica completa</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl">Sistema tipográfico baseado em Inter, Space Grotesk e JetBrains Mono com escala harmônica e hierarquia clara.</p>
+                </div>
+
+                <!-- Font Families -->
+                <div class="mb-16 reveal-up delay-100">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Font Families</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="p-6 bg-[#15151a] border border-white/10 rounded-xl">
+                            <span class="text-xs font-mono text-slate-500 block mb-2">Primary</span>
+                            <p class="text-2xl font-sans text-white mb-2">Inter</p>
+                            <p class="text-sm text-slate-400">Sans-serif principal para UI e conteúdo</p>
+                            <p class="text-xs font-mono text-accent mt-2">font-family: 'Inter', system-ui, sans-serif;</p>
+                        </div>
+                        <div class="p-6 bg-[#15151a] border border-white/10 rounded-xl">
+                            <span class="text-xs font-mono text-slate-500 block mb-2">Display</span>
+                            <p class="text-2xl font-display text-white mb-2">Space Grotesk</p>
+                            <p class="text-sm text-slate-400">Para títulos e headlines</p>
+                            <p class="text-xs font-mono text-accent mt-2">font-family: 'Space Grotesk', sans-serif;</p>
+                        </div>
+                        <div class="p-6 bg-[#15151a] border border-white/10 rounded-xl">
+                            <span class="text-xs font-mono text-slate-500 block mb-2">Monospace</span>
+                            <p class="text-2xl font-mono text-white mb-2">JetBrains Mono</p>
+                            <p class="text-sm text-slate-400">Para código e labels técnicos</p>
+                            <p class="text-xs font-mono text-accent mt-2">font-family: 'JetBrains Mono', monospace;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Font Loading Strategy -->
+                <div class="mb-16 reveal-up delay-200">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Font Loading Strategy</h3>
+                    <div class="p-6 bg-[#15151a] border border-white/10 rounded-xl">
+                        <p class="text-sm text-slate-300 mb-4">• Preconnect para Google Fonts</p>
+                        <p class="text-sm text-slate-300 mb-4">• Weights: 200, 300, 400, 500, 600, 700, 800, 900</p>
+                        <p class="text-sm text-slate-300">• Fallback stack: system-ui, sans-serif</p>
+                    </div>
+                </div>
+
+                <!-- Type Scale -->
+                <div class="space-y-12 reveal-up delay-300">
+                    <div>
+                        <span class="text-xs font-mono text-slate-400 block mb-2">H1 / Space Grotesk Bold / 4rem (64px) / line-height: 1 / letter-spacing: -0.04em</span>
+                        <h1 class="font-display text-5xl md:text-6xl font-bold tracking-tighter text-white">The quick brown fox jumps</h1>
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-slate-400 block mb-2">H2 / Space Grotesk Semibold / 2.5rem (40px) / line-height: 1.1 / letter-spacing: -0.02em</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-semibold tracking-tight text-white">Digital Interface</h2>
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-slate-400 block mb-2">H3 / Inter Medium / 1.5rem (24px) / line-height: 1.3</span>
+                        <h3 class="text-2xl font-medium text-white">Component Architecture</h3>
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-slate-400 block mb-2">H4 / Inter Medium / 1.25rem (20px) / line-height: 1.4</span>
+                        <h4 class="text-xl font-medium text-slate-300">Subsection Title</h4>
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-slate-400 block mb-2">H5 / Inter Medium / 1.125rem (18px) / line-height: 1.5</span>
+                        <h5 class="text-lg font-medium text-slate-300">Card Title</h5>
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-slate-400 block mb-2">H6 / Inter Medium / 1rem (16px) / line-height: 1.5</span>
+                        <h6 class="text-base font-medium text-slate-400">Label Text</h6>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-8 pt-8 border-t border-dashed border-white/10">
+                        <div>
+                            <span class="text-xs font-mono text-slate-400 block mb-2">body-lg / Inter Regular / 1.125rem (18px) / line-height: 1.6</span>
+                            <p class="text-lg text-slate-300 leading-relaxed">Texto de corpo grande para introduções e destaques. Utilizado em parágrafos principais e chamadas importantes.</p>
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono text-slate-400 block mb-2">body / Inter Regular / 1rem (16px) / line-height: 1.6</span>
+                            <p class="text-base text-slate-400 leading-relaxed">Texto padrão para conteúdo principal. Esta é a medida base do sistema tipográfico.</p>
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono text-slate-400 block mb-2">body-sm / Inter Regular / 0.875rem (14px) / line-height: 1.5</span>
+                            <p class="text-sm text-slate-500 leading-relaxed">Helper text e captions. Utilizado para informações secundárias.</p>
+                            <span class="text-xs font-mono uppercase tracking-widest text-slate-500 mt-2 block">LABEL MONO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SISTEMA DE CORES (dark 2.0) -->
+        <section id="colors" class="py-24 md:py-32 border-t border-white/5 bg-[#0a0a0c] relative overflow-hidden">
+            <div class="max-w-[1440px] mx-auto px-6 md:px-24">
+                <div class="mb-16 reveal-up">
+                    <span class="text-xs font-mono uppercase tracking-widest text-slate-500 block mb-4">02 / Sistema de cores</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white">Paleta e roles semânticos</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl">Sistema de cores completo com variantes de opacidade, gradientes e roles semânticos para diferentes contextos.</p>
+                </div>
+
+                <!-- Primary Colors -->
+                <div class="mb-12 reveal-up delay-100">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Cores Primárias</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-accent text-[#0a0a0c] aspect-square p-6 flex flex-col justify-between rounded-xl shadow-xl shadow-accent/20 hover:-translate-y-1 transition-transform">
+                            <div>
+                                <span class="font-bold text-lg">Accent Primary</span>
+                                <p class="text-xs font-mono opacity-80 mt-2">#d5ff40</p>
+                                <p class="text-xs font-mono opacity-60">RGB: 213, 255, 64</p>
+                                <p class="text-xs font-mono opacity-60">--token-d98a4c00-7e0c-42c7-87be-9d10760cb03b</p>
+                            </div>
+                            <div class="text-xs font-mono opacity-80">accent</div>
+                        </div>
+                        <div class="bg-[#15151a] text-white border border-white/10 aspect-square p-6 flex flex-col justify-between rounded-xl hover:-translate-y-1 transition-transform">
+                            <div>
+                                <span class="font-bold text-lg">Surface</span>
+                                <p class="text-xs font-mono text-slate-400 mt-2">#15151a</p>
+                                <p class="text-xs font-mono text-slate-500">RGB: 21, 21, 26</p>
+                                <p class="text-xs font-mono text-slate-500">HSL: 240, 11%, 9%</p>
+                            </div>
+                            <div class="text-xs font-mono text-slate-400">--bg-highlight</div>
+                        </div>
+                        <div class="bg-[#0f0f13] text-slate-300 border border-white/5 aspect-square p-6 flex flex-col justify-between rounded-xl hover:-translate-y-1 transition-transform">
+                            <div>
+                                <span class="font-bold text-lg">Background</span>
+                                <p class="text-xs font-mono text-slate-500 mt-2">#0a0a0c</p>
+                                <p class="text-xs font-mono text-slate-500">RGB: 10, 10, 12</p>
+                                <p class="text-xs font-mono text-slate-500">HSL: 240, 9%, 4%</p>
+                            </div>
+                            <div class="text-xs font-mono text-slate-500">--bg-body</div>
+                        </div>
+                        <div class="bg-slate-600 text-white aspect-square p-6 flex flex-col justify-between rounded-xl hover:-translate-y-1 transition-transform">
+                            <div>
+                                <span class="font-bold text-lg">Muted</span>
+                                <p class="text-xs font-mono opacity-80 mt-2">#64748b</p>
+                                <p class="text-xs font-mono opacity-60">RGB: 100, 116, 139</p>
+                                <p class="text-xs font-mono opacity-60">HSL: 215, 16%, 47%</p>
+                            </div>
+                            <div class="text-xs font-mono opacity-80">slate-500</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Opacity Variants -->
+                <div class="mb-12 reveal-up delay-200">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Variantes de Opacidade</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div class="bg-accent/10 border border-accent/20 p-6 rounded-xl text-center">
+                            <div class="text-xs font-mono text-accent mb-2">10%</div>
+                            <div class="text-sm text-white">bg-accent/10</div>
+                        </div>
+                        <div class="bg-accent/20 border border-accent/30 p-6 rounded-xl text-center">
+                            <div class="text-xs font-mono text-accent mb-2">20%</div>
+                            <div class="text-sm text-white">bg-accent/20</div>
+                        </div>
+                        <div class="bg-accent/30 border border-accent/40 p-6 rounded-xl text-center">
+                            <div class="text-xs font-mono text-accent mb-2">30%</div>
+                            <div class="text-sm text-white">bg-accent/30</div>
+                        </div>
+                        <div class="bg-accent/50 border border-accent/60 p-6 rounded-xl text-center">
+                            <div class="text-xs font-mono text-accent mb-2">50%</div>
+                            <div class="text-sm text-white">bg-accent/50</div>
+                        </div>
+                        <div class="bg-accent border border-accent p-6 rounded-xl text-center">
+                            <div class="text-xs font-mono text-[#0a0a0c] mb-2">100%</div>
+                            <div class="text-sm text-[#0a0a0c]">bg-accent</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gradients -->
+                <div class="mb-12 reveal-up delay-300">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Gradientes</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gradient-to-br from-accent/20 to-blue-900/30 border border-white/10 text-white p-8 rounded-xl flex flex-col justify-between hover:scale-[1.02] transition-transform">
+                            <div>
+                                <span class="font-bold text-lg">Gradient Hero</span>
+                                <p class="text-xs font-mono opacity-70 mt-2">from-accent/20 to-blue-900/30</p>
+                            </div>
+                            <span class="text-xs font-mono opacity-70">accent / blue blur</span>
+                        </div>
+                        <div class="bg-gradient-to-br from-[#15151a] to-[#0f0f13] border border-white/10 text-slate-300 p-8 rounded-xl flex flex-col justify-between hover:scale-[1.02] transition-transform">
+                            <div>
+                                <span class="font-bold text-lg">Gradient Surface</span>
+                                <p class="text-xs font-mono text-slate-500 mt-2">from-[#15151a] to-[#0f0f13]</p>
+                            </div>
+                            <span class="text-xs font-mono text-slate-500">Cards / Sections</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semantic Roles -->
+                <div class="reveal-up delay-500">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Roles Semânticos</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-[#15151a] border border-white/10 rounded-xl">
+                            <h4 class="text-white font-semibold mb-4">Contextos de Uso</h4>
+                            <ul class="space-y-2 text-sm text-slate-400">
+                                <li>• <span class="text-accent">text:</span> Cor do texto principal</li>
+                                <li>• <span class="text-accent">background:</span> Fundo de seções</li>
+                                <li>• <span class="text-accent">border:</span> Bordas e divisores</li>
+                                <li>• <span class="text-accent">hover:</span> Estados de hover</li>
+                                <li>• <span class="text-accent">active:</span> Estados ativos</li>
+                                <li>• <span class="text-accent">disabled:</span> Elementos desabilitados</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 bg-[#15151a] border border-white/10 rounded-xl">
+                            <h4 class="text-white font-semibold mb-4">Contraste (WCAG)</h4>
+                            <ul class="space-y-2 text-sm text-slate-400">
+                                <li>• <span class="text-accent">AA:</span> Contraste mínimo 4.5:1</li>
+                                <li>• <span class="text-accent">AAA:</span> Contraste mínimo 7:1</li>
+                                <li>• Texto branco (#f8fafc) sobre fundo escuro (#0a0a0c): <span class="text-accent">AAA</span></li>
+                                <li>• Texto accent (#d5ff40) sobre fundo escuro: <span class="text-accent">AA</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. UI COMPONENTS (dark 2.0) -->
+        <section id="components" class="py-24 md:py-32 border-t border-white/5 bg-[#0d0d10] bg-grid relative overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-[0.02] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+            <div class="max-w-[1440px] mx-auto px-6 md:px-24 relative z-10">
+                <div class="mb-16 reveal-up">
+                    <span class="text-xs font-mono uppercase tracking-widest text-slate-500 block mb-4">03 / Componentes</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white">Buttons, Inputs, Cards e mais</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl">Componentes UI completos com animações, estados e variações.</p>
+                </div>
+
+                <!-- Buttons -->
+                <div class="mb-16 reveal-up delay-100">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Buttons</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="px-6 py-3 bg-accent hover:bg-accent/90 text-[#0a0a0c] rounded-lg text-sm font-medium transition-all hover:scale-105 active:scale-95 shadow-lg shadow-accent/20">Primary</button>
+                        <button class="px-6 py-3 bg-[#1a1a20] hover:bg-[#25252e] text-white rounded-lg text-sm font-medium border border-slate-700 transition-all hover:scale-105">Secondary</button>
+                        <button class="px-6 py-3 border border-slate-600 text-slate-300 rounded-lg text-sm font-medium hover:border-accent transition-all">Outline</button>
+                        <button class="px-8 py-4 bg-accent text-[#0a0a0c] rounded-full text-sm font-medium hover:-translate-y-1 transition-all shadow-lg shadow-accent/20">Pill</button>
+                        <button class="btn-beam group relative px-6 py-3 rounded-full overflow-hidden">
+                            <span class="btn-beam-content text-sm font-medium">Beam</span>
+                        </button>
+                        <button class="btn-glow px-6 py-3 rounded-lg text-sm font-medium">Glow</button>
+                        <button class="btn-shimmer px-6 py-3 rounded-lg text-sm font-medium">Shimmer</button>
+                        <button class="px-6 py-3 bg-accent/20 text-accent border border-accent/30 rounded-lg text-sm font-medium hover:bg-accent/30 transition-all">Ghost</button>
+                        <button class="px-6 py-3 bg-slate-700 text-slate-300 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed">Disabled</button>
+                    </div>
+                </div>
+
+                <!-- Inputs -->
+                <div class="mb-16 reveal-up delay-200">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Inputs</h3>
+                    <div class="max-w-md space-y-4">
+                        <div>
+                            <label class="text-xs font-mono text-slate-500 block mb-2">Email</label>
+                            <input type="email" placeholder="seu@email.com" class="w-full bg-[#15151a] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-colors">
+                        </div>
+                        <div>
+                            <label class="text-xs font-mono text-slate-500 block mb-2">Password</label>
+                            <input type="password" placeholder="••••••••" class="w-full bg-[#15151a] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-colors">
+                        </div>
+                        <div>
+                            <label class="text-xs font-mono text-slate-500 block mb-2">Select</label>
+                            <select class="w-full bg-[#15151a] border border-white/10 rounded-lg px-4 py-3 text-sm text-white outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-colors appearance-none">
+                                <option>Selecione uma opção</option>
+                                <option>Opção 1</option>
+                                <option>Opção 2</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-mono text-slate-500 block mb-2">Textarea</label>
+                            <textarea placeholder="Digite sua mensagem..." rows="4" class="w-full bg-[#15151a] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-colors resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cards -->
+                <div class="mb-16 reveal-up delay-300">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Cards</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="flashlight-card relative border border-white/10 bg-[#15151a] p-8 rounded-xl hover:shadow-2xl hover:shadow-accent/10 hover:border-accent/30 hover:-translate-y-1 transition-all duration-500 group" onmousemove="updateFlashlight(event, this)">
+                            <div class="w-12 h-12 bg-[#0a0a0c] rounded-lg flex items-center justify-center text-accent mb-6 group-hover:bg-accent/20 transition-colors duration-500">
+                                <iconify-icon icon="solar:graph-up-linear" class="text-2xl"></iconify-icon>
+                            </div>
+                            <h4 class="text-xl font-display font-medium mb-3 text-white">Flashlight Card</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">Efeito de luz ao passar o mouse. Interação fluida e elegante.</p>
+                        </div>
+                        <div class="glow-card p-8 rounded-xl hover:shadow-xl hover:border-accent/20 transition-all group">
+                            <div class="w-12 h-12 bg-[#0a0a0c] rounded-lg flex items-center justify-center text-accent mb-6 group-hover:bg-accent/20 transition-colors">
+                                <iconify-icon icon="solar:shield-check-linear" class="text-2xl"></iconify-icon>
+                            </div>
+                            <h4 class="text-xl font-display font-medium mb-3 text-white">Glow Card</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">Backdrop blur e borda sutil com efeito glow.</p>
+                        </div>
+                        <div class="border border-white/10 bg-[#15151a] p-8 rounded-xl hover:shadow-lg hover:border-accent/30 hover:-translate-y-1 transition-all">
+                            <div class="w-12 h-12 bg-[#0a0a0c] rounded-lg flex items-center justify-center text-accent mb-6">
+                                <iconify-icon icon="solar:widget-5-linear" class="text-2xl"></iconify-icon>
+                            </div>
+                            <h4 class="text-xl font-display font-medium mb-3 text-white">Card Simples</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">Estilo básico com hover e transições suaves.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navbar -->
+                <div class="mb-16 reveal-up delay-400">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Navbar</h3>
+                    <div class="bg-[#15151a] border border-white/10 rounded-xl p-6">
+                        <nav class="flex justify-between items-center">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 bg-accent/20 text-accent flex items-center justify-center rounded-sm">
+                                    <iconify-icon icon="solar:infinity-bold" class="text-xl"></iconify-icon>
+                                </div>
+                                <span class="font-display font-medium text-white">Logo</span>
+                            </div>
+                            <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
+                                <a href="#" class="hover:text-accent transition-colors">Home</a>
+                                <a href="#" class="hover:text-accent transition-colors">About</a>
+                                <a href="#" class="hover:text-accent transition-colors">Contact</a>
+                            </div>
+                            <button class="px-4 py-2 bg-accent text-white rounded-lg text-sm font-medium hover:bg-accent transition-colors">CTA</button>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="mb-16 reveal-up delay-500">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Modal</h3>
+                    <button onclick="document.getElementById('ds-modal').classList.remove('hidden')" class="px-6 py-3 bg-accent text-white rounded-lg text-sm font-medium hover:bg-accent transition-all">
+                        Abrir Modal
+                    </button>
+                    <div id="ds-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onclick="if(event.target===this) this.classList.add('hidden')">
+                        <div class="bg-[#15151a] border border-white/10 rounded-2xl shadow-2xl max-w-md w-full p-8 reveal-zoom active" onclick="event.stopPropagation()">
+                            <div class="flex justify-between items-start mb-6">
+                                <h4 class="font-display text-2xl font-semibold text-white">Modal de exemplo</h4>
+                                <button onclick="document.getElementById('ds-modal').classList.add('hidden')" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                                    <iconify-icon icon="solar:close-circle-linear" class="text-xl text-slate-400"></iconify-icon>
+                                </button>
+                            </div>
+                            <p class="text-slate-400 mb-6 leading-relaxed">Overlay com backdrop-blur. Clique fora para fechar.</p>
+                            <div class="flex gap-3">
+                                <button onclick="document.getElementById('ds-modal').classList.add('hidden')" class="px-6 py-3 bg-accent text-white rounded-lg text-sm font-medium hover:bg-accent transition-all">
+                                    Confirmar
+                                </button>
+                                <button onclick="document.getElementById('ds-modal').classList.add('hidden')" class="px-6 py-3 bg-[#1a1a20] text-white rounded-lg text-sm font-medium border border-slate-700 hover:bg-[#25252e] transition-all">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badges & Tooltips -->
+                <div class="reveal-up delay-700">
+                    <h3 class="text-sm font-mono uppercase text-slate-500 mb-6">Badges & Tooltips</h3>
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <span class="px-3 py-1 bg-accent/20 text-accent text-xs font-mono uppercase rounded-full border border-accent/30">Badge</span>
+                        <span class="px-3 py-1 bg-slate-700/50 text-slate-300 text-xs font-mono rounded-full">Neutral</span>
+                        <span class="px-3 py-1 border border-slate-600 text-slate-400 text-xs font-mono rounded-full">Outline</span>
+                        <span class="px-3 py-1 bg-blue-600/20 text-blue-400 text-xs font-mono rounded-full border border-blue-500/30">Info</span>
+                        <span class="px-3 py-1 bg-yellow-600/20 text-yellow-400 text-xs font-mono rounded-full border border-yellow-500/30">Warning</span>
+                        <span class="px-3 py-1 bg-red-600/20 text-red-400 text-xs font-mono rounded-full border border-red-500/30">Error</span>
+                        <span class="relative group cursor-help">
+                            <span class="px-3 py-1 bg-[#15151a] text-slate-400 text-xs rounded-lg border border-white/10">Hover para tooltip</span>
+                            <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-[#15151a] text-white text-xs rounded-lg border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg">Tooltip exemplo</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ICONES (dark 2.0) -->
+        <section id="icons" class="py-24 md:py-32 border-t border-white/5 bg-[#0a0a0c] relative overflow-hidden">
+            <div class="max-w-[1440px] mx-auto px-6 md:px-24">
+                <div class="mb-16 reveal-up">
+                    <span class="text-xs font-mono uppercase tracking-widest text-slate-500 block mb-4">04 / Ícones</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white">Iconify Solar</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl">Biblioteca de ícones Solar do Iconify com animações e estados interativos.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-8 reveal-up delay-100">
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:home-smile-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:scale-110 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">home</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:settings-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:rotate-90 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">settings</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:user-circle-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:scale-110 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">user</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:bell-linear" class="text-3xl text-slate-500 group-hover:text-accent transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">notification</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:cloud-upload-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:-translate-y-1 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">upload</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:shield-check-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:scale-110 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">security</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:code-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:rotate-12 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">code</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:palette-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:scale-110 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">palette</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:rocket-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:-translate-y-1 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">rocket</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:star-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:scale-110 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">star</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:heart-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:scale-110 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">heart</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 p-4 hover:bg-[#15151a] rounded-lg transition-colors group cursor-pointer">
+                        <iconify-icon icon="solar:magic-stick-linear" class="text-3xl text-slate-500 group-hover:text-accent group-hover:rotate-12 transition-all"></iconify-icon>
+                        <span class="text-[10px] font-mono text-slate-400">magic</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. ANIMAÇÕES (dark 2.0) -->
+        <section id="animations" class="py-24 md:py-32 border-t border-white/5 bg-[#0d0d10] bg-grid relative overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-[0.02] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+            <div class="max-w-[1440px] mx-auto px-6 md:px-24 relative z-10">
+                <div class="mb-16 reveal-up">
+                    <span class="text-xs font-mono uppercase tracking-widest text-slate-500 block mb-4">05 / Animações</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white">Reveal, Float, Beam, Marquee e mais</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl">Sistema completo de animações para criar experiências fluidas e envolventes.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 reveal-up delay-100">
+                    <div class="p-8 border border-white/10 bg-[#15151a] rounded-xl">
+                        <h4 class="text-sm font-mono uppercase text-slate-500 mb-4">animate-float</h4>
+                        <div class="w-24 h-24 bg-[#0a0a0c] rounded-xl animate-float flex items-center justify-center mx-auto">
+                            <iconify-icon icon="solar:star-linear" class="text-3xl text-accent"></iconify-icon>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4 text-center">Animação de flutuação suave</p>
+                    </div>
+                    <div class="p-8 border border-white/10 bg-[#15151a] rounded-xl">
+                        <h4 class="text-sm font-mono uppercase text-slate-500 mb-4">animate-spin-slow</h4>
+                        <div class="w-24 h-24 rounded-xl overflow-hidden flex items-center justify-center border border-white/10 mx-auto">
+                            <div class="w-full h-full bg-[conic-gradient(from_0deg,transparent_0_340deg,#10b981_360deg)] animate-spin-slow"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4 text-center">Rotação lenta contínua</p>
+                    </div>
+                    <div class="p-8 border border-white/10 bg-[#15151a] rounded-xl">
+                        <h4 class="text-sm font-mono uppercase text-slate-500 mb-4">reveal-up</h4>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-[#0a0a0c] rounded-lg reveal-up active">Elemento 1</div>
+                            <div class="p-4 bg-[#0a0a0c] rounded-lg reveal-up active delay-100">Elemento 2</div>
+                            <div class="p-4 bg-[#0a0a0c] rounded-lg reveal-up active delay-200">Elemento 3</div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4">Revelação ao entrar na viewport</p>
+                    </div>
+                    <div class="p-8 border border-white/10 bg-[#15151a] rounded-xl">
+                        <h4 class="text-sm font-mono uppercase text-slate-500 mb-4">reveal-zoom</h4>
+                        <div class="w-24 h-24 bg-[#0a0a0c] rounded-xl reveal-zoom active flex items-center justify-center mx-auto">
+                            <iconify-icon icon="solar:magic-stick-linear" class="text-3xl text-accent"></iconify-icon>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4 text-center">Zoom in ao aparecer</p>
+                    </div>
+                    <div class="p-8 border border-white/10 bg-[#15151a] rounded-xl">
+                        <h4 class="text-sm font-mono uppercase text-slate-500 mb-4">pulse-glow</h4>
+                        <div class="w-24 h-24 bg-accent rounded-xl animate-pulse-glow flex items-center justify-center mx-auto">
+                            <iconify-icon icon="solar:heart-linear" class="text-3xl text-white"></iconify-icon>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4 text-center">Pulso com glow</p>
+                    </div>
+                    <div class="p-8 border border-white/10 bg-[#15151a] rounded-xl">
+                        <h4 class="text-sm font-mono uppercase text-slate-500 mb-4">shimmer</h4>
+                        <div class="w-full h-12 bg-[#0a0a0c] rounded-lg animate-shimmer bg-[length:200%_100%] flex items-center justify-center">
+                            <span class="text-sm text-white">Shimmer Effect</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4">Efeito de brilho deslizante</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee Footer (dark 2.0) -->
+        <div class="overflow-hidden py-12 bg-[#0a0a0c] text-slate-500 text-xs font-mono uppercase tracking-[0.3em] border-t border-white/5">
+            <div class="marquee-track">
+                <span class="mx-8">• SystentandoBR</span>
+                <span class="mx-8">• Design System v2.0</span>
+                <span class="mx-8">• Infinitas Possibilidades</span>
+                <span class="mx-8">• Inter • Space Grotesk • JetBrains Mono</span>
+                <span class="mx-8">• Tailwind • GSAP • Iconify</span>
+                <span class="mx-8">• SystentandoBR</span>
+                <span class="mx-8">• Design System v2.0</span>
+                <span class="mx-8">• Infinitas Possibilidades</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="design-system-2.0.js"></script>
+</body>
+
+</html>
