@@ -87,9 +87,9 @@ export const HeroSection = ({ scrollToSection, onOpenLeadModal, children }: Hero
                 />
             </div>
 
-            {/* Content Overlay - centered Apple style */}
-            <div className="absolute inset-0 top-0 left-0 right-0 h-screen flex flex-col justify-center items-center px-6 pointer-events-none z-10">
-                <div ref={containerRef} className="container mx-auto text-center pointer-events-auto">
+            {/* Content Overlay - deslocado para direita, contraste otimizado */}
+            <div className="absolute inset-0 top-0 left-0 right-0 h-screen flex flex-col justify-center items-center px-6 md:px-12 lg:px-16 pointer-events-none z-10">
+                <div ref={containerRef} className="container mx-auto max-w-4xl text-left pointer-events-auto ml-[28%] md:ml-[35%] lg:ml-[42%]">
                     {/* Badge - Design System */}
                     <div className="inline-flex items-center gap-3 mb-6 reveal-up">
                         <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
@@ -103,18 +103,18 @@ export const HeroSection = ({ scrollToSection, onOpenLeadModal, children }: Hero
                         />
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-display text-glow">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] font-display text-glow">
                         <span className="reveal-up delay-100 block">Vamos criar algo</span>
-                        <span className="reveal-up delay-200 block text-outline-glow text-transparent">
-                            Como acelero meu MVP?
-                        </span>
+                        <span className="reveal-up delay-200 block">extraordinário juntos.</span>
+                        <span className="reveal-up delay-300 block">Um MVP que marque,</span>
+                        <span className="reveal-up delay-300 block italic">converta e venda.</span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed reveal-up delay-500 text-glow">
-                        Cada linha de código tem um único propósito: transformar sua ideia em uma máquina de resultados desde o primeiro dia.
+                    <p className="text-lg md:text-xl text-slate-100 max-w-2xl mb-10 leading-relaxed reveal-up delay-500 hero-paragraph-contrast">
+                        Cada linha de código tem um propósito. A infraestrutura certa transforma sua ideia em uma máquina de resultados desde o primeiro dia.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row justify-center gap-4 reveal-up delay-700">
+                    <div className="flex flex-col sm:flex-row justify-start gap-4 reveal-up delay-700">
                         <button
                             onClick={onOpenLeadModal}
                             className="btn-glow px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2 group shadow-lg shadow-accent/20 hover:shadow-xl transition-all hover:-translate-y-1"

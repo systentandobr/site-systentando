@@ -43,6 +43,23 @@
   transition: all 0.5s ease;
 }
 
+/* Hero: profundidade de contraste sobre vídeo/fundo complexo */
+.hero-headline-contrast {
+  text-shadow:
+    0 0 1px rgba(0,0,0,0.95),
+    0 0 4px rgba(0,0,0,0.7),
+    0 0 12px rgba(0,0,0,0.5),
+    0 0 24px rgba(213,255,64,0.45),
+    0 0 48px rgba(213,255,64,0.25);
+}
+.hero-paragraph-contrast {
+  text-shadow:
+    0 0 1px rgba(0,0,0,0.9),
+    0 0 3px rgba(0,0,0,0.7),
+    0 0 8px rgba(0,0,0,0.5),
+    0 2px 6px rgba(0,0,0,0.8);
+}
+
 /* Design System: texto com glow (accent) */
 .text-glow {
   text-shadow:
