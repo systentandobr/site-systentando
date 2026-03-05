@@ -18,6 +18,12 @@ export interface ProjectCardProps {
     color: EcosystemColor;
 }
 
+export interface ProjectShowcaseProps extends ProjectCardProps {
+    image?: string;
+    badge?: string;
+    date?: string;
+}
+
 export interface FeatureRowProps {
     icon: React.ReactNode;
     title: string;
@@ -50,4 +56,17 @@ export interface GraphNodeProps {
 export interface WorkflowGraphProps {
     nodes: GraphNodeProps[];
     connections: { from: string; to: string; type?: 'flowing' | 'static' | 'dashed' }[];
+}
+
+export interface TestimonialProps {
+    author: string;
+    handle: string;
+    rating: number;
+    content: string;
+    avatarUrl?: string;
+}
+
+export interface FAQItemProps {
+    question: string;
+    answer: string;
 }

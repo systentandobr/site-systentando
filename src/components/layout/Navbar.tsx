@@ -20,10 +20,14 @@ export const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen, scro
                 </div>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-8">
-                    <button onClick={() => scrollToSection('architecture')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Arquitetura</button>
+                <div className="hidden md:flex items-center gap-6">
+                    <button onClick={() => scrollToSection('o-que-resolvemos')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">O que resolvemos</button>
                     <button onClick={() => scrollToSection('projects')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Projetos</button>
-                    <button onClick={() => scrollToSection('collaboration')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Colabore</button>
+                    <button onClick={() => scrollToSection('architecture')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Arquitetura</button>
+                    <button onClick={() => scrollToSection('processo')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Processo</button>
+                    <button onClick={() => scrollToSection('depoimentos')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Depoimentos</button>
+                    <button onClick={() => scrollToSection('contato')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Contato</button>
+                    <button onClick={() => scrollToSection('faq')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">FAQ</button>
                     <a href="https://github.com/systentandobr" target="_blank" rel="noopener noreferrer" className="bg-accent/10 hover:bg-accent/20 text-accent border border-accent/30 px-4 py-2 rounded-full text-sm font-semibold transition-all flex items-center gap-2">
                         <Github size={16} />
                         Repositórios
@@ -38,10 +42,14 @@ export const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen, scro
 
             {/* Mobile Nav */}
             {isMobileMenuOpen && (
-                <div className="md:hidden absolute top-full left-0 w-full bg-[#0f0f13] border-b border-accent/20 py-4 px-6 flex flex-col gap-4">
-                    <button onClick={() => scrollToSection('architecture')} className="text-left py-2 hover:text-accent text-slate-300">Arquitetura</button>
+                <div className="md:hidden absolute top-full left-0 w-full bg-[#0f0f13] border-b border-accent/20 py-4 px-6 flex flex-col gap-2 max-h-[70vh] overflow-y-auto">
+                    <button onClick={() => scrollToSection('o-que-resolvemos')} className="text-left py-2 hover:text-accent text-slate-300">O que resolvemos</button>
                     <button onClick={() => scrollToSection('projects')} className="text-left py-2 hover:text-accent text-slate-300">Projetos</button>
-                    <button onClick={() => scrollToSection('collaboration')} className="text-left py-2 hover:text-accent text-slate-300">Colabore</button>
+                    <button onClick={() => scrollToSection('architecture')} className="text-left py-2 hover:text-accent text-slate-300">Arquitetura</button>
+                    <button onClick={() => scrollToSection('processo')} className="text-left py-2 hover:text-accent text-slate-300">Processo</button>
+                    <button onClick={() => scrollToSection('depoimentos')} className="text-left py-2 hover:text-accent text-slate-300">Depoimentos</button>
+                    <button onClick={() => scrollToSection('contato')} className="text-left py-2 hover:text-accent text-slate-300">Contato</button>
+                    <button onClick={() => scrollToSection('faq')} className="text-left py-2 hover:text-accent text-slate-300">FAQ</button>
                 </div>
             )}
         </nav>

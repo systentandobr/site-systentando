@@ -6,10 +6,14 @@ import { Footer } from './components/layout/Footer';
 
 // Section Components
 import { HeroSection } from './components/sections/HeroSection';
-import { ArchitectureSection } from './components/sections/ArchitectureSection';
-import { ProjectsSection } from './components/sections/ProjectsSection';
-import { CollaborationSection } from './components/sections/CollaborationSection';
-import { SocialSection } from './components/sections/SocialSection';
+import { StatsSection } from './components/sections/StatsSection';
+import { OQueResolvemosSection } from './components/sections/OQueResolvemosSection';
+import { ProjetosDestaqueSection } from './components/sections/ProjetosDestaqueSection';
+import { ArquiteturaStackSection } from './components/sections/ArquiteturaStackSection';
+import { ProcessoSection } from './components/sections/ProcessoSection';
+import { DepoimentosSection } from './components/sections/DepoimentosSection';
+import { ContatoSection } from './components/sections/ContatoSection';
+import { FAQSection } from './components/sections/FAQSection';
 import { LeadOnboardingModal } from './components/sections/LeadOnboardingModal';
 
 const App = () => {
@@ -62,11 +66,15 @@ const App = () => {
             />
 
             <main>
-                <ArchitectureSection />
                 <HeroSection scrollToSection={scrollToSection} onOpenLeadModal={toggleLeadModal} />
-                <ProjectsSection />
-                <CollaborationSection />
-                <SocialSection />
+                <StatsSection />
+                <OQueResolvemosSection />
+                <ProjetosDestaqueSection />
+                <ArquiteturaStackSection />
+                <ProcessoSection />
+                <DepoimentosSection />
+                <ContatoSection onOpenLeadModal={toggleLeadModal} />
+                <FAQSection />
             </main>
 
             <LeadOnboardingModal

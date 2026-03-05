@@ -49,8 +49,8 @@ export const HeroSection = ({ scrollToSection, onOpenLeadModal }: HeroSectionPro
                             Criar Seu Ecossistema <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                         </span>
                     </button>
-                    <button onClick={() => scrollToSection('architecture')} className="btn-shimmer px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2 transition-all hover:-translate-y-1">
-                        <span className="relative z-10 text-sm font-medium tracking-wide">Ver Estrutura Technical</span>
+                    <button onClick={() => scrollToSection('o-que-resolvemos')} className="btn-shimmer px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2 transition-all hover:-translate-y-1">
+                        <span className="relative z-10 text-sm font-medium tracking-wide">O que resolvemos</span>
                     </button>
                 </div>
             </div>
