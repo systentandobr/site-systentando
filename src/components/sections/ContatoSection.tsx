@@ -2,7 +2,6 @@ import { ArrowRight } from 'lucide-react';
 import { useSectionInView } from '@/hooks/useSectionInView';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { SectionLabel } from '@/components/ui/SectionLabel';
-import { SocialFeedCard } from '@/components/ui/SocialFeedCard';
 import { DeviceShowcase } from '@/components/ui/DeviceShowcase';
 
 interface ContatoSectionProps {
@@ -60,32 +59,7 @@ export const ContatoSection = ({ onOpenLeadModal }: ContatoSectionProps) => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div className="reveal-up">
-                        <SocialFeedCard
-                            platform="Instagram"
-                            handle="@systentandobr"
-                            content="Acompanhe o workflow de desenvolvimento da nossa nova IA para o GymApp! 🚀"
-                            image="https://lh3.googleusercontent.com/aida/AOfcidX7UITrmz_SCV6u8QfF_qns_PcSrzDkQYvo7UzmDAvE2b1r_94h7Pew-LH67DNePQBgkOf0CdkpMs3lNBjPLCFkcA0XQPC82eAEAeEwkTe3LF556ijedRm6AnrN7h_VrEelL1PsW8ekjo2c986YFdNk_4SSWiR6v4Ixju0T0yayqUeXiE1lPeb4YA3j9a4nvrSwqBwCJPgJ8p-yY79M9rMl2enL43AtskcjqzWqUjuzPqRllDkKZ5bd9xl6"
-                        />
-                    </div>
-                    <div className="reveal-up delay-100">
-                        <SocialFeedCard
-                            platform="LinkedIn"
-                            handle="Systentando Ecosystem"
-                            content="Como escalamos N aplicações SaaS com um único Monorepo Python. #Arquitetura #CleanCode"
-                            image="https://lh3.googleusercontent.com/aida/AOfcidUEUqueDuaVMz71qQtyzyK9vYn1DpiJp-dtMkpbACASEyQIVlvVav4uhFZ0h1ECW2Po4B_DPsxeOvqmupxZGfdcJGdOzACuaWsBM5hUHt473JQb5UWwby19Nlr_lxgQf2RGGIyJ_eOD4Ih51SOG8gJmMeoljAYzKrkI-SEOyn1eH442gRKcguXUEdRc2HmDFeKO9Td5JaA_iaAWWiQ8yINh_pDaTVkyp5f_7ZNpsRAhkmw55-NlPPGoIXQK"
-                        />
-                    </div>
-                    <div className="reveal-up delay-200">
-                        <SocialFeedCard
-                            platform="GitHub"
-                            handle="Ecosystem Hub"
-                            content="Novo PR: Agentes RAG integrados ao núcleo TaDeVolta. Roadmap 2024 a todo vapor!"
-                            image="https://lh3.googleusercontent.com/aida/AOfcidX6LbSZoIWTmpG9eNBFbPCObz7-Z0Jiyy3SK34dipT8h1gQbUTjFFrVIR9PHZL1I5Pv3D52T5Alwf3ldQwAQtROBb5Zi8uldKitMt5-hPVlVD-_z8z4d2iAZC2drsZ3-i3fQ9SFL2K2emIT_nwVshDKsHWbc_f0r3eHVZbywb1CHw9cyJJCxrzT6b4UEo6NNv5QDu2W75TG86Nuzy4th6SNLUNHmX6jvM6evhhqdNNo_hBY3q8q9fXoUFad"
-                        />
-                    </div>
-                </div>
+                
             </div>
         </SectionWrapper>
     );

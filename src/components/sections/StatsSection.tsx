@@ -2,17 +2,17 @@ import { useSectionInView } from '@/hooks/useSectionInView';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 
 const STATS = [
-    { value: '5+', label: 'anos de experiência' },
-    { value: '>98%', label: 'uptime SLA' },
-    { value: '130+', label: 'clientes satisfeitos' },
-    { value: '+250', label: 'projetos entregues' },
+    { value: '10+', label: 'anos de experiência' },
+    { value: '>99%', label: 'uptime SLA' },
+    { value: '100+', label: 'clientes satisfeitos' },
+    { value: '+25', label: 'projetos entregues' },
 ];
 
 export const StatsSection = () => {
     const ref = useSectionInView();
 
     return (
-        <SectionWrapper>
+        <SectionWrapper variant="overlay">
             <div ref={ref} className="container mx-auto px-6 py-20">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                     {STATS.map((stat) => (

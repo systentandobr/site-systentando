@@ -43,9 +43,6 @@ const App = () => {
     return (
         <div className="min-h-screen dark:bg-[#0a0a0c] bg-[#0a0a0c] dark:text-slate-300 text-slate-300 font-sans overflow-x-hidden relative">
 
-            {/* Design System: noise overlay */}
-            <div className="noise-overlay" />
-
             {/* Background Texture & Premium BG */}
             <div className="fixed inset-0 z-0 pointer-events-none opacity-15 mix-blend-overlay"
                 style={{
@@ -66,9 +63,10 @@ const App = () => {
             />
 
             <main>
-                <HeroSection scrollToSection={scrollToSection} onOpenLeadModal={toggleLeadModal} />
-                <StatsSection />
-                <OQueResolvemosSection />
+                <HeroSection scrollToSection={scrollToSection} onOpenLeadModal={toggleLeadModal}>
+                    <StatsSection />
+                    <OQueResolvemosSection />
+                </HeroSection>
                 <ProjetosDestaqueSection />
                 <ArquiteturaStackSection />
                 <ProcessoSection />

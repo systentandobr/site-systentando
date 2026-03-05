@@ -14,7 +14,7 @@ export const OQueResolvemosSection = () => {
     const ref = useSectionInView();
 
     return (
-        <SectionWrapper id="o-que-resolvemos" variant="dark">
+        <SectionWrapper id="o-que-resolvemos" variant="overlay">
             <div ref={ref} className="container mx-auto px-6 py-24 md:py-32">
                 <SectionLabel number="01" title="O que resolvemos" />
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
