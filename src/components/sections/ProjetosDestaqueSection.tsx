@@ -4,6 +4,11 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { ProjectShowcaseCard } from '@/components/ui/ProjectShowcaseCard';
 
+import gymappImg from '@/assets/images/gymapp.jpg';
+import tadevoltaImg from '@/assets/images/tadevolta.jpg';
+import viralkidsImg from '@/assets/images/viralkids_site.jpg';
+import meugestorImg from '@/assets/images/meugestor_site.jpg';
+
 const PROJECTS = [
     {
         title: 'GymApp / LevantaDAI',
@@ -26,7 +31,7 @@ const PROJECTS = [
         color: 'emerald' as const,
         badge: 'App',
         date: undefined,
-        image: undefined,
+        image: gymappImg,
     },
     {
         title: 'TaDeVolta',
@@ -48,7 +53,7 @@ const PROJECTS = [
         color: 'blue' as const,
         badge: 'SaaS',
         date: undefined,
-        image: undefined,
+        image: tadevoltaImg,
     },
     {
         title: 'ViralKids',
@@ -69,7 +74,7 @@ const PROJECTS = [
         color: 'purple' as const,
         badge: 'E-commerce',
         date: undefined,
-        image: undefined,
+        image: viralkidsImg,
     },
     {
         title: 'Meu Gestor SaaS',
@@ -87,7 +92,7 @@ const PROJECTS = [
         color: 'orange' as const,
         badge: 'ERP',
         date: undefined,
-        image: undefined,
+        image: meugestorImg,
     },
     {
         title: 'Boy Entregador',
