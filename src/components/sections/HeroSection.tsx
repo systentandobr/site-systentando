@@ -87,51 +87,51 @@ export const HeroSection = ({ scrollToSection, onOpenLeadModal, children }: Hero
                 />
             </div>
 
-            {/* Content Overlay - deslocado para direita, contraste otimizado */}
-            <div className="absolute inset-0 top-0 left-0 right-0 h-screen flex flex-col justify-center items-center px-6 md:px-12 lg:px-16 pointer-events-none z-10">
-                <div ref={containerRef} className="container mx-auto max-w-4xl text-left pointer-events-auto ml-[28%] md:ml-[35%] lg:ml-[42%]">
+            {/* Content Overlay - responsivo e otimizado */}
+            <div className="absolute inset-0 top-0 left-0 right-0 h-screen flex flex-col justify-center items-center px-4 sm:px-6 md:px-12 lg:px-16 pointer-events-none z-10">
+                <div ref={containerRef} className="w-full max-w-4xl text-left pointer-events-auto mx-auto sm:mx-auto sm:ml-auto sm:mr-0 md:ml-[35%] lg:ml-[42%]">
                     {/* Badge - Design System */}
-                    <div className="inline-flex items-center gap-3 mb-6 reveal-up">
-                        <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                        <span className="text-xs font-mono uppercase tracking-[0.2em] text-slate-400">
+                    <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 reveal-up flex-wrap">
+                        <span className="w-2 h-2 bg-accent rounded-full animate-pulse flex-shrink-0" />
+                        <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.15em] sm:tracking-[0.2em] text-slate-400">
                             Ecossistema SystentandoBR
                         </span>
-                        <span className="w-12 h-px bg-accent/50" />
+                        <span className="w-8 sm:w-12 h-px bg-accent/50 hidden sm:block" />
                         <span
-                            className="w-2 h-2 bg-accent rounded-full animate-pulse"
+                            className="w-2 h-2 bg-accent rounded-full animate-pulse hidden sm:block flex-shrink-0"
                             style={{ animationDelay: '0.5s' }}
                         />
                     </div>
 
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] font-display text-glow">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-[1.1] sm:leading-[1.15] font-display text-glow break-words">
                         <span className="reveal-up delay-100 block">Vamos criar algo</span>
                         <span className="reveal-up delay-200 block">extraordinário juntos.</span>
                         <span className="reveal-up delay-300 block">Um MVP que marque,</span>
                         <span className="reveal-up delay-300 block italic">converta e venda.</span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-slate-100 max-w-2xl mb-10 leading-relaxed reveal-up delay-500 hero-paragraph-contrast">
+                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-100 max-w-full sm:max-w-2xl mb-6 sm:mb-8 md:mb-10 leading-relaxed reveal-up delay-500 hero-paragraph-contrast break-words">
                         Cada linha de código tem um propósito. A infraestrutura certa transforma sua ideia em uma máquina de resultados desde o primeiro dia.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row justify-start gap-4 reveal-up delay-700">
+                    <div className="flex flex-col sm:flex-row justify-start gap-3 sm:gap-4 reveal-up delay-700">
                         <button
                             onClick={onOpenLeadModal}
-                            className="btn-glow px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2 group shadow-lg shadow-accent/20 hover:shadow-xl transition-all hover:-translate-y-1"
+                            className="btn-glow px-5 sm:px-6 md:px-8 py-3 sm:py-4 rounded-full font-bold flex items-center justify-center gap-2 group shadow-lg shadow-accent/20 hover:shadow-xl transition-all hover:-translate-y-1 w-full sm:w-auto"
                         >
-                            <span className="relative z-10 flex items-center gap-2 text-sm font-medium tracking-wide">
+                            <span className="relative z-10 flex items-center gap-2 text-xs sm:text-sm font-medium tracking-wide whitespace-nowrap">
                                 Criar Seu Ecossistema{' '}
                                 <ArrowRight
-                                    size={20}
-                                    className="group-hover:translate-x-1 transition-transform"
+                                    size={18}
+                                    className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0"
                                 />
                             </span>
                         </button>
                         <button
                             onClick={() => scrollToSection('o-que-resolvemos')}
-                            className="btn-shimmer px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2 transition-all hover:-translate-y-1"
+                            className="btn-shimmer px-5 sm:px-6 md:px-8 py-3 sm:py-4 rounded-full font-bold flex items-center justify-center gap-2 transition-all hover:-translate-y-1 w-full sm:w-auto"
                         >
-                            <span className="relative z-10 text-sm font-medium tracking-wide">
+                            <span className="relative z-10 text-xs sm:text-sm font-medium tracking-wide whitespace-nowrap">
                                 O que resolvemos
                             </span>
                         </button>
