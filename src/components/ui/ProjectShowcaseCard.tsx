@@ -19,6 +19,7 @@ export const ProjectShowcaseCard = ({
         blue: 'from-blue-500/20 to-blue-500/5',
         purple: 'from-purple-500/20 to-purple-500/5',
         orange: 'from-orange-500/20 to-orange-500/5',
+        green: 'from-green-600/25 to-green-700/5',
     };
 
     return (

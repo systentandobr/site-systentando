@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type EcosystemColor = 'emerald' | 'blue' | 'purple' | 'orange';
+export type EcosystemColor = 'emerald' | 'blue' | 'purple' | 'orange' | 'green';
 
 export interface ProjectLink {
     label: string;

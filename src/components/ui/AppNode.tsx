@@ -6,6 +6,7 @@ export const AppNode = ({ icon: Icon, title, desc, color }: AppNodeProps) => {
         blue: "border-l-blue-500 text-blue-400 bg-blue-900/10",
         purple: "border-l-purple-500 text-purple-400 bg-purple-900/10",
         orange: "border-l-orange-500 text-orange-400 bg-orange-900/10",
+        green: "border-l-green-600 text-green-400 bg-green-900/10",
     };
 
     return (

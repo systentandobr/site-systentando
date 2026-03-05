@@ -7,6 +7,7 @@ export const ProjectCard = ({ title, category, icon, description, features, tech
         blue: "hover:border-blue-500/50 group-hover:shadow-blue-900/20",
         purple: "hover:border-purple-500/50 group-hover:shadow-purple-900/20",
         orange: "hover:border-orange-500/50 group-hover:shadow-orange-900/20",
+        green: "hover:border-green-600/50 group-hover:shadow-green-900/20",
     };
 
     return (

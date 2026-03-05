@@ -91,9 +91,9 @@ const PROJECTS = [
     },
     {
         title: 'Boy Entregador',
-        category: 'Delivery',
+        category: 'Marketplace & Comunidade',
         icon: <Truck className="text-green-400 w-12 h-12" />,
-        description: 'Sistema de entrega para restaurantes e mercados. Integração com WhatsApp API.',
+        description: 'Marketplace que une empreendedores locais em comunidade para criar e potencializar novas oportunidades de comércio e organização de serviços.',
         features: [
             'Onboarding de prestadores de serviços',
             'Agenda de entregas',
