@@ -23,7 +23,7 @@ export const OQueResolvemosSection = () => {
                             O que pretendemos resolver?
                         </h2>
                         <p className="text-base sm:text-lg md:text-xl text-slate-400 leading-relaxed reveal-up delay-100 break-words">
-                            Aceleramos o lançamento de MVPs SaaS com uma infraestrutura compartilhada. 
+                            Aceleramos o lançamento de MVPs AI First com uma infraestrutura compartilhada. 
                             De um monorepo único a aplicações especializadas: Fitness, E-commerce, CRM, ERP — 
                             cada produto nasce com autenticação, IA e gestão já integrados.
                         </p>
