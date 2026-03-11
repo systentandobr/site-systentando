@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Design System 3.0 - SystentandoBR</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js"></script>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js for advanced animations -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f111a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e2136;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2d314d;
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+            z-index: 1;
+        }
+
+        /* Grid Pattern */
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Glass Panel */
+        .glass-panel {
+            background: rgba(11, 12, 16, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Skeuomorphic Button Styles */
+        .btn-skeuo {
+            background-image: linear-gradient(to bottom, #323235 0%, #202022 100%);
+            box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.5),
+                0 1px 2px rgba(0, 0, 0, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+            border: 1px solid #111;
+        }
+
+        .btn-skeuo:active {
+            transform: translateY(1px);
+            box-shadow: 
+                inset 0 2px 5px rgba(0, 0, 0, 0.8),
+                inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+        }
+
+        /* LCD Display Effect */
+        .lcd-display {
+            background-color: #0d0d0f;
+            background-image: linear-gradient(to bottom, #08080a 0%, #121215 100%);
+            box-shadow: 
+                inset 0 15px 30px rgba(0, 0, 0, 0.9),
+                inset 0 2px 8px rgba(0, 0, 0, 0.8),
+                0 1px 0 rgba(255, 255, 255, 0.04);
+            border: 1px solid #000;
+            position: relative;
+        }
+
+        .lcd-display::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            z-index: 10;
+        }
+
+        .lcd-display::after {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 120%;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+            transform: rotate(-15deg);
+            border-radius: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Hardware Screw */
+        .hardware-screw {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #111;
+            box-shadow: 
+                inset 0 1px 1px rgba(255, 255, 255, 0.2),
+                0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .hardware-screw::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 6px;
+            height: 1px;
+            background: #000;
+        }
+
+        /* Reveal Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-up.delay-100 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-up.delay-200 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-up.delay-300 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-up.delay-500 {
+            transition-delay: 0.5s;
+        }
+
+        .reveal-up.delay-700 {
+            transition-delay: 0.7s;
+        }
+
+        /* Float Animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-slow {
+            animation: float 10s ease-in-out infinite;
+        }
+
+        /* Beam Button */
+        .btn-beam {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-beam::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-beam:hover::before {
+            left: 100%;
+        }
+
+        /* Glow Button */
+        .btn-glow {
+            background: linear-gradient(180deg, #f97316 0%, #9a3412 100%);
+            box-shadow: 
+                inset 0 1px 1px rgba(255, 255, 255, 0.5),
+                inset 0 -3px 6px rgba(124, 45, 18, 0.5),
+                0 6px 12px rgba(0, 0, 0, 0.6),
+                0 0 20px rgba(249, 115, 22, 0.4);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 
+                inset 0 1px 1px rgba(255, 255, 255, 0.5),
+                inset 0 -3px 6px rgba(124, 45, 18, 0.5),
+                0 6px 12px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(249, 115, 22, 0.6);
+        }
+
+        /* Shimmer Effect */
+        .btn-shimmer {
+            background: linear-gradient(90deg, #1a1a1c 0%, #2a2a2c 50%, #1a1a1c 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* Text Outline Glow */
+        .text-outline-glow {
+            -webkit-text-stroke: 2px #d5ff40;
+            text-shadow: 0 0 30px rgba(213, 255, 64, 0.5);
+        }
+
+        /* Scroll Line Animation */
+        @keyframes scroll-line {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        .animate-scroll-line {
+            animation: scroll-line 2s ease-in-out infinite;
+        }
+
+        /* Marquee */
+        .marquee-track {
+            display: flex;
+            animation: marquee 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Section Wrapper Variants */
+        .section-gradient {
+            background: linear-gradient(to bottom, #818cf8 0%, #4f46e5 50%, #312e81 100%);
+        }
+
+        .section-dark {
+            background: #0b0c10;
+        }
+
+        /* Hardware Card */
+        .hardware-card {
+            background-image: linear-gradient(145deg, #2a2a2c 0%, #161618 100%);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.6),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+            border: 1px solid #0a0a0a;
+        }
+
+        .hardware-card-inner {
+            background-color: #0d0d0f;
+            box-shadow: 
+                inset 0 10px 30px rgba(0, 0, 0, 0.8),
+                inset 0 2px 5px rgba(0, 0, 0, 0.8),
+                0 1px 0 rgba(255, 255, 255, 0.05);
+            border: 1px solid #000;
+        }
+
+        /* Gauge/Dial Styles */
+        .gauge-container {
+            background: #0c0c0c;
+            border: 1px solid #000;
+            box-shadow: 
+                inset 5px 5px 15px rgba(0, 0, 0, 1),
+                inset -2px -2px 5px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Orange/Amber Accent Colors */
+        .text-orange-glow {
+            color: #fb923c;
+            text-shadow: 0 0 8px rgba(251, 146, 60, 0.4);
+        }
+
+        .bg-orange-glow {
+            background: #f97316;
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+        }
+
+        /* Particle System */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: '#d5ff40',
+                        'accent-dim': 'rgba(213, 255, 64, 0.15)',
+                        orange: {
+                            glow: '#fb923c',
+                            dark: '#f97316',
+                            darker: '#ea580c',
+                        }
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#0b0c10] text-slate-300 font-sans antialiased overflow-x-hidden selection:bg-orange-500/30">
+
+    <div class="noise-overlay"></div>
+
+    <!-- NAVBAR -->
+    <header class="fixed top-0 w-full z-50 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-tl from-rose-400 to-amber-500">
+                    <iconify-icon icon="solar:infinity-bold" class="text-white text-lg"></iconify-icon>
+                </div>
+                <span class="font-display font-medium tracking-tight text-lg text-white">Systentando<span class="text-accent">.BR</span></span>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-normal">
+                <a href="#hero" class="hover:text-white transition-colors">Hero</a>
+                <a href="#typography" class="hover:text-white transition-colors">Tipografia</a>
+                <a href="#colors" class="hover:text-white transition-colors">Cores</a>
+                <a href="#components" class="hover:text-white transition-colors">Componentes</a>
+                <a href="#hardware" class="hover:text-white transition-colors">Hardware UI</a>
+                <a href="#animations" class="hover:text-white transition-colors">Animações</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <button class="px-5 py-2.5 rounded-full bg-white text-slate-900 text-sm font-medium hover:bg-slate-100 transition-colors">
+                    Download Kit
+                </button>
+            </div>
+
+            <button class="md:hidden p-2 text-slate-400 hover:text-white">
+                <iconify-icon icon="solar:hamburger-menu-linear" class="text-2xl"></iconify-icon>
+            </button>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <!-- 1. HERO SECTION (Hybrid: Dark 2.0 + Atmos Skeuomorphic) -->
+        <section id="hero" class="min-h-screen relative flex items-center justify-center overflow-hidden pt-40 pb-32">
+            <!-- Three.js Background Animation -->
+            <div id="canvas-container-hero" class="absolute inset-0 z-0"></div>
+
+            <!-- Background Glows -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div class="absolute top-[20%] left-[20%] w-96 h-96 bg-orange-500/15 rounded-full blur-3xl animate-float"></div>
+                <div class="absolute top-[30%] right-[20%] w-[30rem] h-[30rem] bg-accent/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+                <div class="absolute bottom-[20%] left-[10%] w-[25rem] h-[25rem] bg-purple-600/10 rounded-full blur-3xl animate-float-slow" style="animation-delay: -5s;"></div>
+            </div>
+
+            <!-- Grid Pattern Overlay -->
+            <div class="absolute inset-0 bg-grid opacity-20 z-0"></div>
+
+            <div class="relative z-10 text-center px-6 max-w-7xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-100 text-xs font-medium uppercase tracking-widest mb-8 shadow-sm backdrop-blur-sm reveal-up">
+                    <iconify-icon icon="solar:stars-linear" class="text-sm"></iconify-icon>
+                    Design System v3.0
+                </div>
+
+                <h1 class="font-display text-5xl md:text-7xl lg:text-[7rem] font-medium tracking-tight text-white mb-6 leading-[1.1] drop-shadow-md reveal-up delay-100">
+                    <div class="block">Uma Infraestrutura,</div>
+                    <div class="block text-outline-glow text-transparent">Infinitas Possibilidades.</div>
+                </h1>
+
+                <p class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto font-light drop-shadow-sm reveal-up delay-200">
+                    Sistema de design unificado combinando elementos skeuomorphic, displays LCD e animações avançadas. O futuro da interface está aqui.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal-up delay-300">
+                    <button class="btn-glow px-8 py-4 rounded-2xl text-white font-medium hover:bg-orange-600 transition-all shadow-lg hover:-translate-y-0.5">
+                        <div class="flex items-center gap-3">
+                            <iconify-icon icon="solar:rocket-linear" class="text-2xl"></iconify-icon>
+                            <span>Explorar Sistema</span>
+                        </div>
+                    </button>
+                    <button class="btn-skeuo px-8 py-4 rounded-2xl text-white font-medium hover:text-orange-400 transition-all shadow-lg hover:-translate-y-0.5">
+                        <div class="flex items-center gap-3">
+                            <iconify-icon icon="solar:code-linear" class="text-2xl"></iconify-icon>
+                            <span>Ver Componentes</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Floating Hardware Elements -->
+                <div class="absolute top-[15%] left-[10%] w-20 h-20 hardware-card rounded-2xl flex items-center justify-center reveal-up delay-500 pointer-events-none">
+                    <iconify-icon icon="solar:code-linear" class="text-2xl text-orange-400"></iconify-icon>
+                </div>
+                <div class="absolute top-[25%] right-[15%] w-20 h-20 hardware-card rounded-2xl flex items-center justify-center reveal-up delay-500 pointer-events-none" style="animation-delay: -2s;">
+                    <iconify-icon icon="solar:palette-linear" class="text-2xl text-accent"></iconify-icon>
+                </div>
+            </div>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 opacity-60">
+                <span class="text-[10px] font-mono uppercase tracking-widest text-orange-400/80">Scroll</span>
+                <div class="w-px h-8 bg-slate-600 overflow-hidden relative">
+                    <div class="absolute top-0 left-0 w-full h-full bg-orange-500 animate-scroll-line"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. TIPOGRAFIA (Enhanced with LCD Display) -->
+        <section id="typography" class="py-24 md:py-32 border-t border-white/5 bg-[#111111] relative overflow-hidden">
+            <div class="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+                <div class="mb-16 reveal-up">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="flex items-center justify-center w-6 h-6 rounded bg-[#1a1a1c] border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+                            <iconify-icon icon="solar:command-linear" width="14" height="14" class="text-orange-500"></iconify-icon>
+                        </div>
+                        <span class="text-[10px] font-normal uppercase tracking-[0.3em] text-zinc-500">01 / Tipografia</span>
+                    </div>
+                    <h2 class="leading-none md:text-7xl text-3xl font-normal text-white tracking-tight">
+                        Escala Tipográfica <span class="text-orange-500">Completa</span>
+                    </h2>
+                    <div class="h-px w-32 bg-gradient-to-r from-orange-500/50 to-transparent mt-2"></div>
+                </div>
+
+                <!-- LCD Display Typography Showcase -->
+                <div class="mb-16 reveal-up delay-100">
+                    <div class="hardware-card rounded-[2.5rem] p-1.5">
+                        <div class="hardware-card-inner rounded-[2rem] p-8 md:p-10">
+                            <!-- Hardware Screws -->
+                            <div class="absolute top-4 left-4 hardware-screw"></div>
+                            <div class="absolute top-4 right-4 hardware-screw"></div>
+                            <div class="absolute bottom-4 left-4 hardware-screw"></div>
+                            <div class="absolute bottom-4 right-4 hardware-screw"></div>
+
+                            <!-- LCD Scanlines -->
+                            <div class="absolute inset-0 pointer-events-none z-10 opacity-40 mix-blend-overlay" style="background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%); background-size: 100% 4px;"></div>
+
+                            <div class="relative z-20 space-y-8">
+                                <div>
+                                    <span class="text-xs font-mono text-zinc-500 block mb-2">H1 / Space Grotesk Bold / 4rem</span>
+                                    <h1 class="font-display text-5xl md:text-6xl font-bold tracking-tighter text-white text-orange-glow">
+                                        The quick brown fox jumps
+                                    </h1>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-mono text-zinc-500 block mb-2">H2 / Space Grotesk Semibold / 2.5rem</span>
+                                    <h2 class="font-display text-3xl md:text-4xl font-semibold tracking-tight text-white">
+                                        Digital Interface
+                                    </h2>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-mono text-zinc-500 block mb-2">Body / Inter Regular / 1rem</span>
+                                    <p class="text-base text-slate-300 leading-relaxed">
+                                        Sistema tipográfico baseado em Inter, Space Grotesk e JetBrains Mono com escala harmônica e hierarquia clara.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Font Families Grid -->
+                <div class="grid md:grid-cols-3 gap-6 reveal-up delay-200">
+                    <div class="hardware-card rounded-2xl p-6">
+                        <div class="hardware-card-inner rounded-xl p-6">
+                            <span class="text-xs font-mono text-zinc-500 block mb-2">Primary</span>
+                            <p class="text-2xl font-sans text-white mb-2">Inter</p>
+                            <p class="text-sm text-slate-400">Sans-serif principal para UI</p>
+                        </div>
+                    </div>
+                    <div class="hardware-card rounded-2xl p-6">
+                        <div class="hardware-card-inner rounded-xl p-6">
+                            <span class="text-xs font-mono text-zinc-500 block mb-2">Display</span>
+                            <p class="text-2xl font-display text-white mb-2">Space Grotesk</p>
+                            <p class="text-sm text-slate-400">Para títulos e headlines</p>
+                        </div>
+                    </div>
+                    <div class="hardware-card rounded-2xl p-6">
+                        <div class="hardware-card-inner rounded-xl p-6">
+                            <span class="text-xs font-mono text-zinc-500 block mb-2">Monospace</span>
+                            <p class="text-2xl font-mono text-white mb-2">JetBrains Mono</p>
+                            <p class="text-sm text-slate-400">Para código e labels</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SISTEMA DE CORES (Hybrid) -->
+        <section id="colors" class="py-24 md:py-32 border-t border-white/5 bg-[#0a0a0c] relative overflow-hidden">
+            <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+                <div class="mb-16 reveal-up">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="flex items-center justify-center w-6 h-6 rounded bg-[#1a1a1c] border border-white/5">
+                            <iconify-icon icon="solar:palette-linear" width="14" height="14" class="text-orange-500"></iconify-icon>
+                        </div>
+                        <span class="text-[10px] font-normal uppercase tracking-[0.3em] text-zinc-500">02 / Sistema de Cores</span>
+                    </div>
+                    <h2 class="leading-none md:text-7xl text-3xl font-normal text-white tracking-tight">
+                        Paleta e Roles <span class="text-orange-500">Semânticos</span>
+                    </h2>
+                </div>
+
+                <!-- Color Cards with Hardware Style -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 reveal-up delay-100">
+                    <div class="hardware-card rounded-2xl p-6 aspect-square flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                        <div>
+                            <span class="font-bold text-lg text-white">Accent Primary</span>
+                            <p class="text-xs font-mono text-slate-400 mt-2">#d5ff40</p>
+                        </div>
+                        <div class="w-full h-24 bg-accent rounded-xl"></div>
+                    </div>
+                    <div class="hardware-card rounded-2xl p-6 aspect-square flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                        <div>
+                            <span class="font-bold text-lg text-white">Orange Glow</span>
+                            <p class="text-xs font-mono text-slate-400 mt-2">#fb923c</p>
+                        </div>
+                        <div class="w-full h-24 bg-orange-glow rounded-xl"></div>
+                    </div>
+                    <div class="hardware-card rounded-2xl p-6 aspect-square flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                        <div>
+                            <span class="font-bold text-lg text-white">Surface</span>
+                            <p class="text-xs font-mono text-slate-400 mt-2">#15151a</p>
+                        </div>
+                        <div class="w-full h-24 bg-[#15151a] border border-white/10 rounded-xl"></div>
+                    </div>
+                    <div class="hardware-card rounded-2xl p-6 aspect-square flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                        <div>
+                            <span class="font-bold text-lg text-white">Background</span>
+                            <p class="text-xs font-mono text-slate-400 mt-2">#0a0a0c</p>
+                        </div>
+                        <div class="w-full h-24 bg-[#0a0a0c] border border-white/5 rounded-xl"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. UI COMPONENTS (Hybrid Skeuomorphic + Modern) -->
+        <section id="components" class="py-24 md:py-32 border-t border-white/5 bg-[#111111] relative overflow-hidden">
+            <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+                <div class="mb-16 reveal-up">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="flex items-center justify-center w-6 h-6 rounded bg-[#1a1a1c] border border-white/5">
+                            <iconify-icon icon="solar:widget-5-linear" width="14" height="14" class="text-orange-500"></iconify-icon>
+                        </div>
+                        <span class="text-[10px] font-normal uppercase tracking-[0.3em] text-zinc-500">03 / Componentes</span>
+                    </div>
+                    <h2 class="leading-none md:text-7xl text-3xl font-normal text-white tracking-tight">
+                        Buttons, Inputs, Cards <span class="text-orange-500">e mais</span>
+                    </h2>
+                </div>
+
+                <!-- Buttons Section -->
+                <div class="mb-16 reveal-up delay-100">
+                    <h3 class="text-sm font-mono uppercase text-zinc-500 mb-6">Buttons</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="btn-glow px-6 py-3 rounded-xl text-white font-medium">
+                            Glow Button
+                        </button>
+                        <button class="btn-skeuo px-6 py-3 rounded-xl text-white font-medium">
+                            Skeuomorphic
+                        </button>
+                        <button class="btn-shimmer px-6 py-3 rounded-xl text-white font-medium">
+                            Shimmer
+                        </button>
+                        <button class="px-6 py-3 bg-accent hover:bg-accent/90 text-[#0a0a0c] rounded-xl text-sm font-medium transition-all">
+                            Accent
+                        </button>
+                        <button class="px-6 py-3 border border-slate-600 text-slate-300 rounded-xl text-sm font-medium hover:border-orange-500 transition-all">
+                            Outline
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cards Section -->
+                <div class="mb-16 reveal-up delay-200">
+                    <h3 class="text-sm font-mono uppercase text-zinc-500 mb-6">Cards</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="hardware-card rounded-2xl p-1.5 group transition-transform duration-500 hover:-translate-y-1">
+                            <div class="hardware-card-inner rounded-[1.6rem] p-8 relative overflow-hidden">
+                                <!-- Hardware Screws -->
+                                <div class="absolute top-4 left-4 hardware-screw"></div>
+                                <div class="absolute top-4 right-4 hardware-screw"></div>
+                                
+                                <!-- LCD Scanlines -->
+                                <div class="absolute inset-0 pointer-events-none z-10 opacity-40 mix-blend-overlay" style="background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%); background-size: 100% 4px;"></div>
+
+                                <div class="relative z-20">
+                                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 btn-skeuo">
+                                        <iconify-icon icon="solar:graph-up-linear" width="24" height="24" class="text-orange-400"></iconify-icon>
+                                    </div>
+                                    <h4 class="text-2xl font-normal tracking-tight text-white mb-4">Hardware Card</h4>
+                                    <p class="text-slate-400 font-light leading-relaxed">
+                                        Card com estilo skeuomorphic, screws e LCD scanlines.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hardware-card rounded-2xl p-1.5 group transition-transform duration-500 hover:-translate-y-1">
+                            <div class="hardware-card-inner rounded-[1.6rem] p-8 relative overflow-hidden">
+                                <div class="absolute top-4 left-4 hardware-screw"></div>
+                                <div class="absolute top-4 right-4 hardware-screw"></div>
+                                
+                                <div class="relative z-20">
+                                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 btn-skeuo">
+                                        <iconify-icon icon="solar:shield-check-linear" width="24" height="24" class="text-accent"></iconify-icon>
+                                    </div>
+                                    <h4 class="text-2xl font-normal tracking-tight text-white mb-4">Modern Card</h4>
+                                    <p class="text-slate-400 font-light leading-relaxed">
+                                        Combinação de estilos modernos e hardware.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hardware-card rounded-2xl p-1.5 group transition-transform duration-500 hover:-translate-y-1">
+                            <div class="hardware-card-inner rounded-[1.6rem] p-8 relative overflow-hidden">
+                                <div class="absolute top-4 left-4 hardware-screw"></div>
+                                <div class="absolute top-4 right-4 hardware-screw"></div>
+                                
+                                <div class="relative z-20">
+                                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 btn-skeuo">
+                                        <iconify-icon icon="solar:magic-stick-linear" width="24" height="24" class="text-purple-400"></iconify-icon>
+                                    </div>
+                                    <h4 class="text-2xl font-normal tracking-tight text-white mb-4">Hybrid Card</h4>
+                                    <p class="text-slate-400 font-light leading-relaxed">
+                                        Mistura perfeita entre design moderno e retro.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. HARDWARE UI ELEMENTS -->
+        <section id="hardware" class="py-24 md:py-32 border-t border-white/5 bg-[#0a0a0c] relative overflow-hidden">
+            <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+                <div class="mb-16 reveal-up">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="flex items-center justify-center w-6 h-6 rounded bg-[#1a1a1c] border border-white/5">
+                            <iconify-icon icon="solar:settings-linear" width="14" height="14" class="text-orange-500"></iconify-icon>
+                        </div>
+                        <span class="text-[10px] font-normal uppercase tracking-[0.3em] text-zinc-500">04 / Hardware UI</span>
+                    </div>
+                    <h2 class="leading-none md:text-7xl text-3xl font-normal text-white tracking-tight">
+                        Elementos <span class="text-orange-500">Skeuomorphic</span>
+                    </h2>
+                </div>
+
+                <!-- LCD Display Showcase -->
+                <div class="mb-16 reveal-up delay-100">
+                    <div class="hardware-card rounded-[2.5rem] p-1.5">
+                        <div class="lcd-display rounded-[2rem] p-8 md:p-10 relative">
+                            <!-- Hardware Screws -->
+                            <div class="absolute top-6 left-6 hardware-screw"></div>
+                            <div class="absolute top-6 right-6 hardware-screw"></div>
+                            <div class="absolute bottom-6 left-6 hardware-screw"></div>
+                            <div class="absolute bottom-6 right-6 hardware-screw"></div>
+
+                            <div class="relative z-20 text-orange-glow">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="flex flex-col">
+                                        <span class="text-6xl font-medium tracking-tight leading-none">14°</span>
+                                        <span class="uppercase text-sm font-normal text-orange-500/80 tracking-widest mt-2">Mostly Cloudy</span>
+                                    </div>
+                                    <iconify-icon icon="solar:cloud-snowfall-linear" width="56" height="56" class="text-orange-500 opacity-90"></iconify-icon>
+                                </div>
+
+                                <div class="flex justify-between items-end border-t border-orange-500/20 pt-4 mt-2">
+                                    <div class="flex gap-6">
+                                        <div class="flex flex-col gap-1">
+                                            <span class="text-[10px] font-medium uppercase text-orange-500/50 tracking-wider">High</span>
+                                            <span class="text-sm font-medium">2°</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1">
+                                            <span class="text-[10px] font-medium uppercase text-orange-500/50 tracking-wider">Low</span>
+                                            <span class="text-sm font-medium">-12°</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_5px_#ef4444]"></div>
+                                        <span class="text-[10px] font-medium uppercase tracking-wider text-orange-500/80">FLS -14°</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gauge/Dial Component -->
+                <div class="mb-16 reveal-up delay-200">
+                    <div class="hardware-card rounded-[2.5rem] p-1.5">
+                        <div class="hardware-card-inner rounded-[2rem] p-8 md:p-10">
+                            <div class="flex items-center justify-center min-h-[400px]">
+                                <div class="gauge-container rounded-[40px] w-[300px] h-[300px] flex items-center justify-center relative">
+                                    <div class="w-[240px] h-[240px] rounded-full relative flex items-center justify-center" style="box-shadow: inset 4px 4px 10px rgba(0,0,0,0.9), inset -2px -2px 4px rgba(255,255,255,0.03);">
+                                        <svg viewBox="0 0 280 280" class="overflow-visible w-full h-full absolute">
+                                            <defs>
+                                                <linearGradient id="arc-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                                                    <stop offset="0%" stop-color="#fb923c"></stop>
+                                                    <stop offset="50%" stop-color="#ea580c"></stop>
+                                                    <stop offset="100%" stop-color="#dc2626"></stop>
+                                                </linearGradient>
+                                            </defs>
+                                            <path id="track" fill="none" stroke="#111" stroke-width="8" stroke-linecap="round" d="M 76.36 203.64 A 90 90 0 1 1 203.64 203.64"></path>
+                                            <path id="arc" fill="none" stroke="url(#arc-gradient)" stroke-width="8" stroke-linecap="round" d="M 76.36 203.64 A 90 90 0 1 1 203.64 203.64" style="stroke-dasharray: 424.175; stroke-dashoffset: 282.783;"></path>
+                                        </svg>
+                                        <div class="relative z-20 w-[140px] h-[140px] rounded-full btn-skeuo flex items-center justify-center">
+                                            <div class="absolute inset-2 rounded-full bg-[#1a1a1a] flex flex-col items-center justify-center">
+                                                <span class="text-[10px] font-medium text-neutral-500 uppercase tracking-widest mb-1">UV Level</span>
+                                                <span class="text-5xl font-normal tracking-tight text-orange-500 leading-none font-mono" style="text-shadow: 0 0 10px rgba(249,115,22,0.5);">4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. ANIMAÇÕES (Enhanced) -->
+        <section id="animations" class="py-24 md:py-32 border-t border-white/5 bg-[#111111] relative overflow-hidden">
+            <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+                <div class="mb-16 reveal-up">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="flex items-center justify-center w-6 h-6 rounded bg-[#1a1a1c] border border-white/5">
+                            <iconify-icon icon="solar:magic-stick-linear" width="14" height="14" class="text-orange-500"></iconify-icon>
+                        </div>
+                        <span class="text-[10px] font-normal uppercase tracking-[0.3em] text-zinc-500">05 / Animações</span>
+                    </div>
+                    <h2 class="leading-none md:text-7xl text-3xl font-normal text-white tracking-tight">
+                        Reveal, Float, Beam <span class="text-orange-500">e mais</span>
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 reveal-up delay-100">
+                    <div class="hardware-card rounded-2xl p-8">
+                        <h4 class="text-sm font-mono uppercase text-zinc-500 mb-4">animate-float</h4>
+                        <div class="w-24 h-24 hardware-card rounded-xl animate-float flex items-center justify-center mx-auto">
+                            <iconify-icon icon="solar:star-linear" class="text-3xl text-orange-400"></iconify-icon>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4 text-center">Animação de flutuação suave</p>
+                    </div>
+
+                    <div class="hardware-card rounded-2xl p-8">
+                        <h4 class="text-sm font-mono uppercase text-zinc-500 mb-4">reveal-up</h4>
+                        <div class="space-y-4">
+                            <div class="p-4 hardware-card-inner rounded-lg reveal-up active">Elemento 1</div>
+                            <div class="p-4 hardware-card-inner rounded-lg reveal-up active delay-100">Elemento 2</div>
+                            <div class="p-4 hardware-card-inner rounded-lg reveal-up active delay-200">Elemento 3</div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4">Revelação ao entrar na viewport</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee Footer -->
+        <div class="overflow-hidden py-12 bg-[#0a0a0c] text-slate-500 text-xs font-mono uppercase tracking-[0.3em] border-t border-white/5">
+            <div class="marquee-track">
+                <span class="mx-8">• SystentandoBR</span>
+                <span class="mx-8">• Design System v3.0</span>
+                <span class="mx-8">• Hybrid Skeuomorphic + Modern</span>
+                <span class="mx-8">• Infinitas Possibilidades</span>
+                <span class="mx-8">• SystentandoBR</span>
+                <span class="mx-8">• Design System v3.0</span>
+                <span class="mx-8">• Hybrid Skeuomorphic + Modern</span>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Three.js Background Animation (simplified)
+        async function initBackground() {
+            try {
+                const THREE = await import('three');
+                const container = document.getElementById('canvas-container-hero');
+                if (!container) return;
+
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+                camera.position.z = 50;
+
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                const geometry = new THREE.BufferGeometry();
+                const particles = 1000;
+                const positions = new Float32Array(particles * 3);
+
+                for (let i = 0; i < particles * 3; i++) {
+                    positions[i] = (Math.random() - 0.5) * 200;
+                }
+
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                const material = new THREE.PointsMaterial({
+                    color: 0xfb923c,
+                    size: 0.5,
+                    transparent: true,
+                    opacity: 0.6
+                });
+
+                const points = new THREE.Points(geometry, material);
+                scene.add(points);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    points.rotation.x += 0.001;
+                    points.rotation.y += 0.002;
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = container.clientWidth / container.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                });
+            } catch (error) {
+                console.log('Three.js not available, using fallback');
+            }
+        }
+
+        // Initialize on load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initBackground);
+        } else {
+            initBackground();
+        }
+    </script>
+</body>
+
+</html>
