@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 // Layout Components
 import { Navbar } from './components/layout/Navbar';
@@ -16,7 +17,10 @@ import { ContatoSection } from './components/sections/ContatoSection';
 import { FAQSection } from './components/sections/FAQSection';
 import { LeadOnboardingModal } from './components/sections/LeadOnboardingModal';
 
-const App = () => {
+// Pages
+import { FredsCodeAssistantPage } from './pages/FredsCodeAssistantPage';
+
+const HomePage = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
@@ -83,6 +87,69 @@ const App = () => {
 
             <Footer />
         </div>
+    );
+};
+
+const AppContent = () => {
+    const location = useLocation();
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const scrollToSection = (id: string) => {
+        if (location.pathname !== '/') {
+            window.location.href = `/#${id}`;
+            return;
+        }
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            setIsMobileMenuOpen(false);
+        }
+    };
+
+    return (
+        <div className="min-h-screen dark:bg-[#0a0a0c] bg-[#0a0a0c] dark:text-slate-300 text-slate-300 font-sans overflow-x-hidden relative">
+            {/* Background Texture & Premium BG */}
+            <div className="fixed inset-0 z-0 pointer-events-none opacity-15 mix-blend-overlay"
+                style={{
+                    backgroundImage: 'url(https://systentando.com/assets/images/background.png)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                }}>
+            </div>
+            <div className="fixed inset-0 z-0 dark:bg-gradient-to-tr dark:from-[#0a0a0c] dark:via-[#0a0a0c]/80 dark:to-accent/10 bg-gradient-to-tr from-[#0a0a0c] via-[#0a0a0c]/80 to-accent/10 pointer-events-none"></div>
+            <div className="fixed inset-0 z-0 pointer-events-none bg-grid opacity-15"></div>
+
+            <Navbar
+                isScrolled={isScrolled}
+                isMobileMenuOpen={isMobileMenuOpen}
+                setIsMobileMenuOpen={setIsMobileMenuOpen}
+                scrollToSection={scrollToSection}
+            />
+
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/freds-code-assistant" element={<FredsCodeAssistantPage />} />
+            </Routes>
+
+            <Footer />
+        </div>
+    );
+};
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <AppContent />
+        </BrowserRouter>
     );
 };
 

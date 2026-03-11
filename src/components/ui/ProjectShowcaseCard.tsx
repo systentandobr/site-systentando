@@ -1,4 +1,5 @@
 import { ChevronRight, ExternalLink, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { ProjectShowcaseProps, EcosystemColor, ProjectLink } from '../../types';
 
 export const ProjectShowcaseCard = ({
@@ -69,14 +70,23 @@ export const ProjectShowcaseCard = ({
                         </span>
                     </div>
                     {links.length > 0 && (
-                        <a
-                            href={links[0].url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-slate-500 hover:text-white transition-colors"
-                        >
-                            <ExternalLink size={20} />
-                        </a>
+                        links[0].url.startsWith('http') || links[0].url.startsWith('//') ? (
+                            <a
+                                href={links[0].url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-slate-500 hover:text-white transition-colors"
+                            >
+                                <ExternalLink size={20} />
+                            </a>
+                        ) : (
+                            <Link
+                                to={links[0].url}
+                                className="text-slate-500 hover:text-white transition-colors"
+                            >
+                                <ExternalLink size={20} />
+                            </Link>
+                        )
                     )}
                 </div>
 
@@ -108,18 +118,29 @@ export const ProjectShowcaseCard = ({
                         ))}
                     </div>
                     <div className="flex gap-3">
-                        {links.map((link: ProjectLink, i: number) => (
-                            <a
-                                key={i}
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-xs font-bold text-accent hover:text-accent/80 flex items-center gap-1"
-                            >
-                                {link.label}
-                                <ArrowRight size={12} />
-                            </a>
-                        ))}
+                        {links.map((link: ProjectLink, i: number) => 
+                            link.url.startsWith('http') || link.url.startsWith('//') ? (
+                                <a
+                                    key={i}
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-xs font-bold text-accent hover:text-accent/80 flex items-center gap-1"
+                                >
+                                    {link.label}
+                                    <ArrowRight size={12} />
+                                </a>
+                            ) : (
+                                <Link
+                                    key={i}
+                                    to={link.url}
+                                    className="text-xs font-bold text-accent hover:text-accent/80 flex items-center gap-1"
+                                >
+                                    {link.label}
+                                    <ArrowRight size={12} />
+                                </Link>
+                            )
+                        )}
                     </div>
                 </div>
             </div>

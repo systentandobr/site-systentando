@@ -1,4 +1,5 @@
 import { Activity, Github, Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface NavbarProps {
     isScrolled: boolean;
@@ -23,6 +24,7 @@ export const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen, scro
                 <div className="hidden md:flex items-center gap-6">
                     <button onClick={() => scrollToSection('o-que-resolvemos')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">O que resolvemos</button>
                     <button onClick={() => scrollToSection('projects')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Projetos</button>
+                    <Link to="/freds-code-assistant" className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Freds Code Assistant</Link>
                     <button onClick={() => scrollToSection('architecture')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Arquitetura</button>
                     <button onClick={() => scrollToSection('processo')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Processo</button>
                     <button onClick={() => scrollToSection('depoimentos')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Depoimentos</button>
@@ -45,6 +47,7 @@ export const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen, scro
                 <div className="md:hidden absolute top-full left-0 w-full bg-[#0f0f13] border-b border-accent/20 py-4 px-6 flex flex-col gap-2 max-h-[70vh] overflow-y-auto">
                     <button onClick={() => scrollToSection('o-que-resolvemos')} className="text-left py-2 hover:text-accent text-slate-300">O que resolvemos</button>
                     <button onClick={() => scrollToSection('projects')} className="text-left py-2 hover:text-accent text-slate-300">Projetos</button>
+                    <Link to="/freds-code-assistant" className="text-left py-2 hover:text-accent text-slate-300">Freds Code Assistant</Link>
                     <button onClick={() => scrollToSection('architecture')} className="text-left py-2 hover:text-accent text-slate-300">Arquitetura</button>
                     <button onClick={() => scrollToSection('processo')} className="text-left py-2 hover:text-accent text-slate-300">Processo</button>
                     <button onClick={() => scrollToSection('depoimentos')} className="text-left py-2 hover:text-accent text-slate-300">Depoimentos</button>

@@ -1,4 +1,4 @@
-import { Activity, Repeat, ShoppingCart, Layers, Truck } from 'lucide-react';
+import { Activity, Repeat, ShoppingCart, Layers, Truck, Code } from 'lucide-react';
 import { useSectionInView } from '@/hooks/useSectionInView';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { SectionLabel } from '@/components/ui/SectionLabel';
@@ -112,6 +112,28 @@ const PROJECTS = [
         links: [{ label: 'Marketplace', url: 'https://marketplace.tadevolta.com.br/' }],
         color: 'green' as const,
         badge: 'App',
+        date: undefined,
+        image: undefined,
+    },
+    {
+        title: 'Freds Code Assistant',
+        category: 'AI Development Tools',
+        icon: <Code className="text-cyan-400 w-12 h-12" />,
+        description: 'Assistente de IA integrado ao Telegram que roda localmente usando os principais CLIs de mercado. Segurança embarcada, sem APIs expostas em VPS.',
+        features: [
+            'Geração de código via CLIs locais',
+            'Operações Git automatizadas',
+            'Navegação de repositórios',
+            'Validação pós-build com IA',
+            'Human-in-the-loop para segurança',
+        ],
+        techs: ['Go', 'Telegram Bot API', 'Cursor CLI', 'Claude CLI', 'Gemini CLI', 'Codex CLI', 'OpenCode CLI'],
+        links: [
+            { label: 'Página Dedicada', url: '/freds-code-assistant' },
+            { label: 'GitHub', url: 'https://github.com/systentandobr/code-assistant-friendly' },
+        ],
+        color: 'blue' as const,
+        badge: 'Tool',
         date: undefined,
         image: undefined,
     },
