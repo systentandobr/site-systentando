@@ -19,11 +19,11 @@ const SEO = ({
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
-        <property name="og:title" content={title} />
-        <property name="og:description" content={description} />
-        <property name="og:image" content={ogImage} />
-        <property name="twitter:title" content={title} />
-        <property name="twitter:description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
     </Helmet>
 );
 
