@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import Sitemap from 'vite-plugin-sitemap'
 import { readFileSync, writeFileSync } from 'fs'
 import { createHash } from 'crypto'
 import { join, resolve } from 'path'
@@ -40,7 +41,14 @@ const versionPlugin = () => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), versionPlugin()],
+  plugins: [
+    react(), 
+    versionPlugin(),
+    Sitemap({
+      hostname: 'https://systentando.com',
+      dynamicRoutes: ['/freds-code-assistant'],
+    })
+  ],
   define: {
     // Injetar variáveis de versão no código durante o build
     'import.meta.env.VITE_APP_VERSION': JSON.stringify(version),

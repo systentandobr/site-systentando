@@ -1,5 +1,31 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+
+interface SEOProps {
+    title?: string;
+    description?: string;
+    keywords?: string;
+    ogImage?: string;
+}
+
+const SEO = ({ 
+    title = "SystentandoBR | Ecossistema de Negócios Inteligentes", 
+    description = "Solução definitiva para gestão empresarial multi-segmento. CRM, controle logístico, financeiro e automação.",
+    keywords = "SaaS, gestão empresarial, CRM, automação, ERP",
+    ogImage = "/og-image.png"
+}: SEOProps) => (
+    <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <property name="og:title" content={title} />
+        <property name="og:description" content={description} />
+        <property name="og:image" content={ogImage} />
+        <property name="twitter:title" content={title} />
+        <property name="twitter:description" content={description} />
+    </Helmet>
+);
 
 // Layout Components
 import { Navbar } from './components/layout/Navbar';
@@ -136,8 +162,24 @@ const AppContent = () => {
             />
 
             <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/freds-code-assistant" element={<FredsCodeAssistantPage />} />
+                <Route path="/" element={
+                    <>
+                        <SEO 
+                            title="SystentandoBR - Gestão Inteligente para Múltiplos Segmentos"
+                            description="Potencialize seu negócio com o Systentando. Gestão completa, escalável e adaptada para diversos segmentos do mercado."
+                        />
+                        <HomePage />
+                    </>
+                } />
+                <Route path="/freds-code-assistant" element={
+                    <>
+                        <SEO 
+                            title="Fred's Code Assistant | Automação Inteligente Systentando"
+                            description="Conheça o Fred, seu assistente de elite para desenvolvimento e automação dentro do ecossistema Systentando."
+                        />
+                        <FredsCodeAssistantPage />
+                    </>
+                } />
             </Routes>
 
             <Footer />
