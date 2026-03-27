@@ -2,6 +2,7 @@ import { Code, Shield, Zap, GitBranch, FileSearch, CheckCircle, MousePointer, Sp
 import { useSectionInView } from '@/hooks/useSectionInView';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { SectionLabel } from '@/components/ui/SectionLabel';
+import { CLIGuidesSection } from '@/components/sections/CLIGuidesSection';
 
 export const FredsCodeAssistantPage = () => {
     const heroRef = useSectionInView();
@@ -381,6 +382,9 @@ export const FredsCodeAssistantPage = () => {
                     </div>
                 </div>
             </SectionWrapper>
+
+            {/* CLI Guides Section */}
+            <CLIGuidesSection />
 
             {/* CTA Section */}
             <SectionWrapper id="freds-cta" variant="dark">
