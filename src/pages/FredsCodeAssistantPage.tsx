@@ -1,4 +1,5 @@
-import { Code, Shield, Zap, GitBranch, FileSearch, CheckCircle, MousePointer, Sparkles, Bot, Lock, Terminal, Rocket, Lightbulb, Brain, Eye } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Code, Shield, Zap, GitBranch, FileSearch, CheckCircle, MousePointer, Sparkles, Bot, Lock, Terminal, Rocket, Lightbulb, Brain, Eye, BookOpen } from 'lucide-react';
 import { useSectionInView } from '@/hooks/useSectionInView';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { SectionLabel } from '@/components/ui/SectionLabel';
@@ -41,14 +42,14 @@ export const FredsCodeAssistantPage = () => {
                                         href="https://github.com/systentandobr/code-assistant-friendly"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-8 py-4 bg-accent hover:bg-accent/90 text-white rounded-full font-semibold transition-all flex items-center justify-center gap-2"
+                                        className="px-8 py-4 bg-accent hover:bg-accent/90 text-black rounded-full font-semibold transition-all flex items-center justify-center gap-2"
                                     >
                                         <Code className="w-5 h-5" />
                                         Ver no GitHub
                                     </a>
                                     <a
                                         href="#como-comecar"
-                                        className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-full font-semibold transition-all flex items-center justify-center gap-2"
+                                        className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-black rounded-full font-semibold transition-all flex items-center justify-center gap-2"
                                     >
                                         <Rocket className="w-5 h-5" />
                                         Começar Agora
@@ -401,20 +402,18 @@ export const FredsCodeAssistantPage = () => {
                                 href="https://github.com/systentandobr/code-assistant-friendly"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-8 py-4 bg-accent hover:bg-accent/90 text-white rounded-full font-semibold transition-all flex items-center justify-center gap-2"
+                                className="px-8 py-4 bg-accent hover:bg-accent/90 text-black rounded-full font-semibold transition-all flex items-center justify-center gap-2"
                             >
                                 <Code className="w-5 h-5" />
-                                Ver no GitHub
+                                Ver no GitHub (Código Fonte)
                             </a>
-                            <a
-                                href="https://github.com/systentandobr/code-assistant-friendly#readme"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <Link
+                                to="/documentacao"
                                 className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-full font-semibold transition-all flex items-center justify-center gap-2"
                             >
-                                <Rocket className="w-5 h-5" />
+                                <BookOpen className="w-5 h-5" />
                                 Documentação
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

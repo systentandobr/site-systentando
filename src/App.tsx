@@ -45,6 +45,7 @@ import { LeadOnboardingModal } from './components/sections/LeadOnboardingModal';
 
 // Pages
 import { FredsCodeAssistantPage } from './pages/FredsCodeAssistantPage';
+import { DocumentationPage } from './pages/DocumentationPage';
 
 const HomePage = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -178,6 +179,15 @@ const AppContent = () => {
                             description="Conheça o Fred, seu assistente de elite para desenvolvimento e automação dentro do ecossistema Systentando."
                         />
                         <FredsCodeAssistantPage />
+                    </>
+                } />
+                <Route path="/documentacao" element={
+                    <>
+                        <SEO 
+                            title="Documentação | Freds Code Assistant"
+                            description="Documentação completa do Freds Code Assistant. Aprenda a instalar, configurar e usar cada CLI de IA."
+                        />
+                        <DocumentationPage />
                     </>
                 } />
             </Routes>

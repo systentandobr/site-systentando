@@ -25,6 +25,7 @@ export const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen, scro
                     <button onClick={() => scrollToSection('o-que-resolvemos')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">O que resolvemos</button>
                     <button onClick={() => scrollToSection('projects')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Projetos</button>
                     <Link to="/freds-code-assistant" className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Freds Code Assistant</Link>
+                    <Link to="/documentacao" className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Documentação</Link>
                     <button onClick={() => scrollToSection('architecture')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Arquitetura</button>
                     <button onClick={() => scrollToSection('processo')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Processo</button>
                     <button onClick={() => scrollToSection('depoimentos')} className="hover:text-accent text-slate-300 transition-colors text-sm font-medium">Depoimentos</button>
@@ -48,6 +49,7 @@ export const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen, scro
                     <button onClick={() => scrollToSection('o-que-resolvemos')} className="text-left py-2 hover:text-accent text-slate-300">O que resolvemos</button>
                     <button onClick={() => scrollToSection('projects')} className="text-left py-2 hover:text-accent text-slate-300">Projetos</button>
                     <Link to="/freds-code-assistant" className="text-left py-2 hover:text-accent text-slate-300">Freds Code Assistant</Link>
+                    <Link to="/documentacao" className="text-left py-2 hover:text-accent text-slate-300">Documentação</Link>
                     <button onClick={() => scrollToSection('architecture')} className="text-left py-2 hover:text-accent text-slate-300">Arquitetura</button>
                     <button onClick={() => scrollToSection('processo')} className="text-left py-2 hover:text-accent text-slate-300">Processo</button>
                     <button onClick={() => scrollToSection('depoimentos')} className="text-left py-2 hover:text-accent text-slate-300">Depoimentos</button>
